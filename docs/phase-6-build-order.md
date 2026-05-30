@@ -1,6 +1,6 @@
 # Phase 6: Build Order
 
-**Status:** Draft — awaiting approval  
+**Status:** Approved  
 **Domain:** sahilladhania.com  
 **Depends on:** [phase-5-tech-architecture.md](./phase-5-tech-architecture.md)  
 **Launch target:** Sunday, 31 May 2026  
@@ -379,11 +379,11 @@ Smoke test production
 
 Reply **Approved** to begin execution.
 
-- [ ] Launch date: 31 May 2026
-- [ ] Full scope (everything decided)
-- [ ] Solo build
-- [ ] Manual Vercel deploy, no CI/CD
-- [ ] 8-block build sequence accepted
-- [ ] Emergency cut order understood
+- [x] Launch date: 31 May 2026
+- [x] Full scope (everything decided)
+- [x] Solo build
+- [x] Manual Vercel deploy, no CI/CD
+- [x] 8-block build sequence accepted
+- [x] Emergency cut order understood
 
-**Pending approval by Sahil Ladhania**
+**Approved by Sahil Ladhania — 2026-05-30**

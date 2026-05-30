@@ -1,0 +1,51 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [vector]
+}
+
+model VisitorEvent {
+  id        String   @id @default(uuid()) @db.Uuid
+  sessionId String   @map("session_id") @db.Uuid
+  pathname  String
+  referrer  String?
+  country   String?  @db.Char(2)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([createdAt(sort: Desc)])
+  @@index([sessionId])
+  @@index([country])
+  @@map("visitor_events")
+}
+
+model KnowledgeChunk {
+  id         String                      @id @default(uuid()) @db.Uuid
+  content    String
+  embedding  Unsupported("vector(1536)")?
+  sourceType String                      @map("source_type")
+  sourceId   String                      @map("source_id")
+  title      String
+  updatedAt  DateTime                    @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@index([sourceType, sourceId])
+  @@map("knowledge_chunks")
+}
+
+model MusicSnapshot {
+  id           String   @id @default(uuid()) @db.Uuid
+  trackName    String   @map("track_name")
+  artist       String
+  album        String?
+  spotifyId    String?  @map("spotify_id")
+  snapshotType String   @map("snapshot_type")
+  fetchedAt    DateTime @default(now()) @map("fetched_at") @db.Timestamptz
+
+  @@index([snapshotType, fetchedAt(sort: Desc)])
+  @@map("music_snapshots")
+}
