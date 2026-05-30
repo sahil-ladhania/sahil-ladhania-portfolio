@@ -96,11 +96,11 @@ sahil-ladhania-portfolio/
 ├── components/
 │   ├── ui/                        # Phase 1 primitives (Button, GlassCard, etc.)
 │   ├── aceternity/                # Aceternity UI components (added incrementally)
+│   │   └── floating-dock.tsx      # Site navigation
 │   ├── theme/                     # ThemeProvider, ThemeToggle
 │   ├── layout/
 │   │   ├── SiteLayout.tsx
-│   │   ├── SideNav.tsx
-│   │   ├── MobileNav.tsx
+│   │   ├── SiteHeader.tsx
 │   │   └── SiteFooter.tsx
 │   ├── sections/
 │   │   ├── Hero.tsx

@@ -8,7 +8,7 @@ interface ProofStripProps {
 
 export function ProofStrip({ proof }: ProofStripProps): React.ReactElement {
   return (
-    <section id="proof" className="py-12">
+    <section id="proof" className="scroll-mt-20 py-12">
       <Container>
         <GlassCard className="space-y-6">
           <blockquote className="max-w-2xl text-foreground-muted">

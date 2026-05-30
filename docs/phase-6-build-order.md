@@ -30,7 +30,7 @@
 | Page | Single-page — all 7 sections + footer |
 | Content | Markdown-driven copy (Phase 3) |
 | Projects | Expand-in-place cards, Lulu teaser → `#now` |
-| CV | Download CTA in hero, sidebar, contact |
+| CV | Download CTA in hero, header, contact |
 | Agent chat | Bottom-center RAG chatbot (OpenAI + pgvector) |
 | Command palette | ⌘K — all 12 actions |
 | Visitor log | Middleware → Supabase (query DB directly) |
@@ -155,9 +155,8 @@ Day 1 (31 May) — solo, full day
 
 **Goal:** Phase 2 complete — full single page with real content.
 
-- [ ] `components/layout/SiteLayout.tsx` — desktop sidebar + mobile header
-- [ ] `SideNav.tsx` — numbered links, scroll spy, CV button, theme toggle
-- [ ] `MobileNav.tsx` — sticky bar, menu overlay
+- [ ] `components/layout/SiteLayout.tsx` — floating dock + agent chat sidebar
+- [ ] `SiteHeader.tsx` — Aceternity Floating Dock nav
 - [ ] `components/sections/Hero.tsx`
 - [ ] `components/sections/ProofStrip.tsx`
 - [ ] `components/sections/AboutSection.tsx` — render MD body
@@ -166,7 +165,7 @@ Day 1 (31 May) — solo, full day
 - [ ] `components/sections/ZyntohouseSection.tsx`
 - [ ] `components/sections/ContactSection.tsx` — links row only (form in Block 5)
 - [ ] `components/layout/SiteFooter.tsx` — copyright, back to top
-- [ ] `components/features/timezone-clock/TimezoneClock.tsx` — sidebar + footer
+- [ ] `components/features/timezone-clock/TimezoneClock.tsx` — footer
 - [ ] `components/shared/DownloadCvButton.tsx`
 - [ ] Wire `app/page.tsx` — server component, load MD, compose sections
 - [ ] Scroll spy + section hash navigation
@@ -214,7 +213,7 @@ Day 1 (31 May) — solo, full day
 
 ### 5d. Spotify (~30 min)
 - [ ] `GET /api/spotify/now-playing`
-- [ ] `components/features/spotify-widget/SpotifyWidget.tsx` — sidebar + footer
+- [ ] `components/features/spotify-widget/SpotifyWidget.tsx` — footer
 - [ ] Optional: `POST /api/spotify/sync` + one manual sync for RAG music chunks
 
 ### 5e. Diagrams + analytics (~15 min)
@@ -286,7 +285,7 @@ Run through before sharing the URL.
 | 2 | Light/dark toggle persists on refresh | ☐ |
 | 3 | All 5 nav sections scroll correctly | ☐ |
 | 4 | Project cards expand/collapse (one at a time) | ☐ |
-| 5 | CV downloads from hero, sidebar, contact | ☐ |
+| 5 | CV downloads from hero, header, contact | ☐ |
 | 6 | ⌘K palette — all 12 actions work | ☐ |
 | 7 | Agent chat answers a project question from RAG | ☐ |
 | 8 | Agent refuses a question outside knowledge base | ☐ |

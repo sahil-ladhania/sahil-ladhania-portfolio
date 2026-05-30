@@ -5,14 +5,15 @@ import { Link } from "@/components/ui/Link";
 
 export function SiteFooter(): React.ReactElement {
   return (
-    <footer className="border-t border-border py-12 lg:hidden">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 md:px-8">
+    <footer className="border-t border-border bg-background-subtle py-12">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 md:px-8 lg:px-12">
         <TimezoneClock />
         <Link href="#hero" variant="nav">
           Back to top
         </Link>
         <p className="font-mono text-xs text-foreground-subtle">
-          Built with Next.js, deployed on Vercel.
+          © {new Date().getFullYear()} Sahil Ladhania · Built with Next.js, deployed on
+          Vercel.
         </p>
       </div>
     </footer>

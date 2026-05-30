@@ -8,21 +8,30 @@ interface SectionProps {
   id?: string;
   className?: string;
   animate?: boolean;
+  surface?: "default" | "subtle";
   children: React.ReactNode;
 }
+
+const sectionClassName = "scroll-mt-20 py-20 md:py-28 lg:py-32";
 
 export function Section({
   id,
   className,
   animate = true,
+  surface = "default",
   children,
 }: SectionProps): React.ReactElement {
   const prefersReducedMotion = useReducedMotion();
   const variants = prefersReducedMotion ? reducedMotion : fadeIn;
+  const surfaceClassName =
+    surface === "subtle" ? "bg-background-subtle" : undefined;
 
   if (!animate) {
     return (
-      <section id={id} className={cn("py-20 md:py-28 lg:py-32", className)}>
+      <section
+        id={id}
+        className={cn(sectionClassName, surfaceClassName, className)}
+      >
         {children}
       </section>
     );
@@ -35,7 +44,7 @@ export function Section({
       whileInView="visible"
       viewport={{ once: true, margin: "-10% 0px" }}
       variants={variants}
-      className={cn("py-20 md:py-28 lg:py-32", className)}
+      className={cn(sectionClassName, surfaceClassName, className)}
     >
       {children}
     </motion.section>

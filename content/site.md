@@ -4,10 +4,10 @@ hero:
   oneLiner: "I build production AI systems and full-stack products — from zero to paying users."
   subtext: "Full-stack and AI engineer. Founder of [Zyntohouse](#zyntohouse). I've shipped multi-tenant SaaS, agentic pipelines, and consumer apps used by real clients — not demos."
 contact:
-  email: hello@sahilladhania.com
-  calUrl: https://cal.com/sahilladhania
-  linkedin: https://linkedin.com/in/sahilladhania
-  github: https://github.com/sahilladhania
+  email: sahilladhania5@gmail.com
+  calUrl: https://cal.com/sahil-ladhania/lets-build-something
+  linkedin: https://www.linkedin.com/in/sahil-ladhania/
+  github: https://github.com/sahil-ladhania
 proof:
   testimonial:
     quote: "Sahil took a messy ops problem and turned it into a product our team actually uses every day. He ships fast, communicates clearly, and doesn't disappear after launch."

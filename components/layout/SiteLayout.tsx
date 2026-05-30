@@ -1,7 +1,6 @@
 "use client";
 
-import { SideNav } from "@/components/layout/SideNav";
-import { MobileNav } from "@/components/layout/MobileNav";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { AgentChatProvider } from "@/components/features/agent-chat/AgentChatProvider";
 import { AgentChat } from "@/components/features/agent-chat/AgentChat";
@@ -19,9 +18,8 @@ export function SiteLayout({
 }: SiteLayoutProps): React.ReactElement {
   return (
     <AgentChatProvider>
-      <MobileNav />
-      <SideNav />
-      <main className="lg:pl-72 pb-32">{children}</main>
+      <SiteHeader />
+      <main className="pb-32">{children}</main>
       <SiteFooter />
       <AgentChat />
       <CommandPalette contact={contact} />

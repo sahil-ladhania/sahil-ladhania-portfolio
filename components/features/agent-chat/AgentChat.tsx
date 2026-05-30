@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { useAgentChat } from "@/components/features/agent-chat/AgentChatProvider";
 import { cn } from "@/lib/cn";
 
@@ -21,6 +22,16 @@ export function AgentChat(): React.ReactElement {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isOpen]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+    return undefined;
+  }, [isOpen]);
+
   const sendMessage = async (): Promise<void> => {
     const trimmed = input.trim();
     if (!trimmed || loading) return;
@@ -31,7 +42,6 @@ export function AgentChat(): React.ReactElement {
     setInput("");
     setLoading(true);
     setError(null);
-    openChat();
 
     try {
       const res = await fetch("/api/chat", {
@@ -72,76 +82,115 @@ export function AgentChat(): React.ReactElement {
   };
 
   return (
-    <div className="fixed bottom-6 left-1/2 z-40 w-full max-w-xl -translate-x-1/2 px-4">
-      {isOpen && (
-        <div className="mb-3 max-h-[60vh] overflow-y-auto rounded-lg border border-glass-border bg-glass-bg p-4 backdrop-blur-xl">
-          <div className="mb-3 flex items-center justify-between">
-            <p className="font-mono text-xs text-accent">Sahil&apos;s agent</p>
-            <button
-              type="button"
-              onClick={closeChat}
-              className="text-foreground-subtle hover:text-accent"
-              aria-label="Minimize chat"
-            >
-              −
-            </button>
-          </div>
-          <div className="space-y-3">
-            {messages.length === 0 && (
-              <p className="text-sm text-foreground-muted">
-                Ask about my work, projects, or what I&apos;m into.
-              </p>
-            )}
-            {messages.map((msg, i) => (
-              <div
-                key={`${msg.role}-${i}`}
-                className={cn(
-                  "rounded-md px-3 py-2 text-sm",
-                  msg.role === "user"
-                    ? "ml-8 bg-background-subtle text-foreground"
-                    : "mr-8 bg-glass-bg text-foreground-muted",
-                )}
-              >
-                {msg.content}
-              </div>
-            ))}
-            {loading && (
-              <p className="text-sm text-foreground-subtle">Thinking...</p>
-            )}
-            {error && <p className="text-sm text-error">{error}</p>}
-            <div ref={bottomRef} />
-          </div>
-        </div>
-      )}
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          void sendMessage();
-        }}
-        className="flex items-center gap-2 rounded-lg border border-glass-border bg-glass-bg px-4 py-3 shadow-sm backdrop-blur-xl dark:shadow-none"
+    <>
+      <button
+        type="button"
+        onClick={openChat}
+        className="fixed top-5 right-6 z-40 flex items-center gap-2 rounded-full border border-glass-border bg-glass-bg px-4 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur-xl transition-colors hover:border-border-strong dark:shadow-none"
+        aria-label="Talk to Sahil's agent"
       >
         <span className="text-accent" aria-hidden="true">
           ✦
         </span>
-        <input
-          type="text"
-          value={input}
-          onFocus={openChat}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask my agent anything..."
-          aria-label="Ask Sahil's agent"
-          className="flex-1 bg-transparent text-sm text-foreground placeholder:text-foreground-subtle focus:outline-none"
-        />
-        <button
-          type="submit"
-          disabled={loading || !input.trim()}
-          className="text-accent hover:text-accent-hover disabled:opacity-50"
-          aria-label="Send message"
-        >
-          ↑
-        </button>
-      </form>
-    </div>
+        Talk to me
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.button
+              type="button"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={closeChat}
+              className="fixed inset-0 z-40 bg-foreground/20 backdrop-blur-sm"
+              aria-label="Close chat sidebar"
+            />
+
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 280 }}
+              className="fixed top-0 right-0 z-50 flex h-full w-full max-w-md flex-col border-l border-border bg-background shadow-lg"
+              aria-label="Agent chat"
+            >
+              <div className="flex items-center justify-between border-b border-border px-5 py-4">
+                <div>
+                  <p className="font-mono text-xs text-accent">Sahil&apos;s agent</p>
+                  <p className="text-sm text-foreground-muted">
+                    Ask about my work, projects, or stack.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={closeChat}
+                  className="rounded-md px-2 py-1 text-foreground-subtle transition-colors hover:text-accent"
+                  aria-label="Close chat"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="flex-1 space-y-3 overflow-y-auto px-5 py-4">
+                {messages.length === 0 && (
+                  <p className="text-sm text-foreground-muted">
+                    Ask about my work, projects, or what I&apos;m into.
+                  </p>
+                )}
+                {messages.map((msg, i) => (
+                  <div
+                    key={`${msg.role}-${i}`}
+                    className={cn(
+                      "rounded-md px-3 py-2 text-sm",
+                      msg.role === "user"
+                        ? "ml-8 bg-background-subtle text-foreground"
+                        : "mr-8 bg-glass-bg text-foreground-muted",
+                    )}
+                  >
+                    {msg.content}
+                  </div>
+                ))}
+                {loading && (
+                  <p className="text-sm text-foreground-subtle">Thinking...</p>
+                )}
+                {error && <p className="text-sm text-error">{error}</p>}
+                <div ref={bottomRef} />
+              </div>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  void sendMessage();
+                }}
+                className="border-t border-border px-5 py-4"
+              >
+                <div className="flex items-center gap-2 rounded-lg border border-glass-border bg-glass-bg px-4 py-3 backdrop-blur-xl">
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Ask my agent anything..."
+                    aria-label="Ask Sahil's agent"
+                    className="flex-1 bg-transparent text-sm text-foreground placeholder:text-foreground-subtle focus:outline-none"
+                    autoFocus
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading || !input.trim()}
+                    className="text-accent hover:text-accent-hover disabled:opacity-50"
+                    aria-label="Send message"
+                  >
+                    ↑
+                  </button>
+                </div>
+              </form>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

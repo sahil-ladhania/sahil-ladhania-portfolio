@@ -15,7 +15,7 @@
 | Q2 Chatbot scope | Resume, products (built + in progress), content posted, songs liked |
 | Q3 Visitor log | No admin dashboard — data in DB tables, query directly |
 | Q4 Command palette | All: navigate, chatbot, copy email, GitHub, LinkedIn, download CV, toggle theme |
-| Q5 Spotify widget | Corner placement — sidebar/footer per layout (see §5) |
+| Q5 Spotify widget | Footer placement per layout (see §5) |
 | Q6 GitHub widget | **Not needed — excluded** |
 | Q7 Contact | Both full form AND mailto + social links |
 
@@ -410,7 +410,7 @@ Optional P2: `intent` select — "Job opportunity" / "Project inquiry" / "Other"
 | Desktop (`lg+`) | Sidebar, below IST clock — compact single-line |
 | Mobile | Footer, above copyright |
 
-Rationale: visible but not competing with bottom-center chat agent. Corner/sidebar keeps personality without clutter.
+Rationale: visible but not competing with bottom-center chat agent. Footer keeps personality without clutter.
 
 ### 5.2 Display
 
@@ -447,7 +447,7 @@ New Delhi · 14:32 IST
 ```
 
 - Updates every minute (client-side)
-- Desktop: sidebar
+- Footer (all breakpoints)
 - Mobile: footer
 
 ### 6.2 Purpose
@@ -498,7 +498,7 @@ Diagrams show: services, databases, queues, external APIs, data flow. Created ma
 | Live social scraping | Manual `content/posts.ts` only in MVP |
 | Chatbot general knowledge | Grounded responses only |
 
-**Phase 2 amendment:** Remove GitHub widget from sidebar/footer specs. GitHub remains as link in command palette, contact, and about.
+**Phase 2 amendment:** Remove GitHub widget from footer widget specs. GitHub remains as link in command palette, contact, and about.
 
 ---
 
@@ -568,7 +568,7 @@ Reply **Approved** or list edits:
 - [x] Expanded RAG scope (resume, products, posts, music)
 - [x] No admin dashboard — DB tables only
 - [x] Command palette with all 12 actions
-- [x] Spotify in sidebar/footer (not competing with chat bar)
+- [x] Spotify in footer (not competing with chat bar)
 - [x] GitHub widget excluded
 - [x] Contact form + direct links both present
 - [x] Architecture diagram placeholders for TBK + Reachly

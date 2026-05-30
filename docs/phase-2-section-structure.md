@@ -3,7 +3,7 @@
 **Status:** Approved  
 **Domain:** sahilladhania.com  
 **Depends on:** [phase-1-design-system.md](./phase-1-design-system.md)  
-**Last updated:** 2026-05-30
+**Last updated:** 2026-05-30 (amended: top nav replaces sidebar)
 
 ---
 
@@ -37,52 +37,43 @@
 
 ## 2. Global layout
 
-Brittany Chiang pattern adapted to Phase 1 tokens.
+Single-page portfolio layout — sticky top nav on all breakpoints (not a dashboard sidebar).
 
-### Desktop (`lg+`)
+### All viewports
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  [Fixed left column ~240px]  │  [Scrollable main]       │
-│                              │                          │
-│  Name / logo                 │  #hero                   │
-│  Short tagline (1 line)      │  #proof                  │
-│                              │  #about                  │
-│  Nav links (numbered)        │  #work                   │
-│    01. About                 │  #now                    │
-│    02. Work                  │  #zyntohouse             │
-│    03. Now                   │  #contact                │
-│    04. Studio                │                          │
-│    05. Contact               │  [Footer widgets]        │
-│                              │                          │
-│  [Download CV]               │                          │
-│  [Theme toggle]              │                          │
-│  [IST clock]                 │                          │
-│  [Spotify mini]              │                          │
-│  [GitHub mini]               │                          │
+│ [Sticky top bar — glass]                                │
+│  Name          01.About 02.Work …     CV  Theme  Menu   │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  #hero                                                  │
+│  #proof                                                 │
+│  #about                                                 │
+│  #work                                                  │
+│  #now                                                   │
+│  #zyntohouse                                            │
+│  #contact                                               │
+│                                                         │
+│  [Footer — clock, back to top, copyright]               │
 └─────────────────────────────────────────────────────────┘
 ```
 
-- Left column: `fixed`, full viewport height, scroll-independent.
-- Main: `lg:ml-[240px]` (or `lg:pl-72` per Phase 1 `sidebar-width`).
-- Active nav item: accent color + subtle indicator (no animation beyond color).
+- Top bar: removed. **Aceternity Floating Dock** fixed bottom-center on all breakpoints (nav + Download CV + theme toggle).
+- **Talk to me** button top-right opens agent chat in a right-side sidebar panel.
+- Main content: centered `max-w-6xl`, no left offset.
+- Active nav item: accent color (scroll spy via Intersection Observer).
+- Sections use `scroll-mt-20` for anchor offset under sticky header.
 
-### Mobile / tablet (`< lg`)
+### Widget placement
 
-```
-┌──────────────────────────┐
-│ [Sticky top bar]         │
-│  Name    CV  Theme  Menu │
-├──────────────────────────┤
-│  Sections stack vertically│
-│  ...                     │
-│  [Footer widgets inline] │
-└──────────────────────────┘
-```
-
-- Sticky top bar: `h-16`, glass background.
-- Nav: slide-down panel or full-screen overlay from menu button.
-- Widgets (Spotify, GitHub, clock): footer only on mobile — not in top bar.
+| Widget | Placement |
+|--------|-----------|
+| Theme toggle | Header (all breakpoints) |
+| Download CV | Header (desktop inline; mobile in menu + hero + contact) |
+| IST timezone clock | Footer (all breakpoints) |
+| Spotify Now Playing | Footer (Phase 4) |
+| GitHub activity widget | Removed from layout (link only) |
 
 ---
 
@@ -280,7 +271,7 @@ Zyntohouse is **not** a project card — it has its own section.
 
 | Block | Placement |
 |-------|-----------|
-| IST timezone clock | Desktop: sidebar. Mobile: footer. |
+| IST timezone clock | Footer (all breakpoints) |
 | Spotify Now Playing | Same |
 | GitHub activity widget | Same |
 | Copyright | `© {year} Sahil Ladhania` |
@@ -293,7 +284,7 @@ Not a numbered nav section.
 
 ## 5. Navigation spec
 
-### Side nav items (desktop)
+### Header nav items (all breakpoints)
 
 | Order | Label | Target | Number prefix |
 |-------|-------|--------|---------------|
@@ -305,18 +296,18 @@ Not a numbered nav section.
 
 **Not in nav:** Hero, Proof, Footer widgets.
 
-### Persistent actions (sidebar / mobile header)
+### Persistent actions (header)
 
 | Action | Placement |
 |--------|-----------|
-| Download CV | Sidebar button + mobile header icon/link |
-| Theme toggle | Sidebar + mobile header |
+| Download CV | Header (desktop); mobile menu + hero + contact |
+| Theme toggle | Header (all breakpoints) |
 | Command palette | Phase 4 — not in Phase 2 structure |
 
 ### Scroll spy
 
 - Intersection Observer highlights active nav item based on visible section.
-- Offset accounts for sticky header on mobile.
+- Offset accounts for sticky header (`scroll-mt-20` on sections).
 
 ---
 
@@ -325,8 +316,7 @@ Not a numbered nav section.
 | Location | Format |
 |----------|--------|
 | Hero | Tertiary link / ghost button |
-| Desktop sidebar | Persistent “Download CV” button below nav |
-| Mobile header | Compact icon + “CV” text |
+| Header | Ghost “Download CV” (desktop inline; mobile in menu) |
 | Contact section | Primary-style button repeated |
 
 **File:** `/public/cv/sahil-ladhania-cv.pdf` (path TBD in Phase 5).  
@@ -354,8 +344,8 @@ Not a numbered nav section.
 | Component | Section(s) | Notes |
 |-----------|------------|-------|
 | `SiteLayout` | Global | Sidebar + main grid |
-| `SideNav` | Global | Numbered links, scroll spy |
-| `MobileNav` | Global | Top bar + overlay menu |
+| `SiteHeader` | Global | Aceternity Floating Dock nav |
+| `floating-dock.tsx` | Global | Aceternity UI copy-in (see `components/aceternity/`) |
 | `Hero` | `#hero` | |
 | `ProofStrip` | `#proof` | Logos and/or quotes |
 | `AboutSection` | `#about` | |
@@ -414,7 +404,7 @@ Hardcoded TS/JSON file — confirmed in Phase 5.
 
 When implementation begins (after Phase 1 is implemented):
 
-1. `SiteLayout` with desktop sidebar + mobile header
+1. `SiteLayout` with floating dock + agent chat sidebar
 2. All 7 sections as **structural shells** with placeholder/lorem content
 3. `ProjectList` + `ProjectCard` expand-in-place logic
 4. `DownloadCvButton` in all three placements (placeholder PDF OK)
@@ -432,8 +422,8 @@ When implementation begins (after Phase 1 is implemented):
 - [x] 4 project cards (Lulu teaser in Work, full detail in Now)
 - [x] Expand-in-place, one-at-a-time
 - [x] Zyntohouse as section `04. Studio`
-- [x] CV download in hero + sidebar + contact
+- [x] CV download in hero + header + contact
 - [x] No blog, no sub-routes
-- [x] Brittany-style fixed sidebar on desktop
+- [x] Sticky top nav on all breakpoints (portfolio, not dashboard sidebar)
 
 **Approved by Sahil Ladhania — 2026-05-30**

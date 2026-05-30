@@ -15,7 +15,7 @@ const secondaryBtn =
 
 export function Hero({ hero, contact }: HeroProps): React.ReactElement {
   return (
-    <section id="hero" className="py-20 md:py-28 lg:py-32">
+    <section id="hero" className="scroll-mt-20 py-20 md:py-28 lg:py-32">
       <Container narrow>
         <p className="mb-4 font-mono text-sm text-accent">{hero.greeting}</p>
         <h1 className="text-4xl font-bold tracking-tight text-foreground lg:text-5xl">

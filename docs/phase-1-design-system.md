@@ -24,14 +24,14 @@
 
 | Principle | Rule |
 |-----------|------|
-| Clarity over decoration | Typography and spacing do the work; no gradients, noise, or glow |
+| Clarity over decoration | Typography and spacing do the work; no gradients, noise, or glow on the page |
 | Light-first | Default theme is light; dark is opt-in via toggle (not `prefers-color-scheme` alone) |
 | Accent = signal | `#084a3a` marks links, CTAs, active nav, focus rings — nothing else |
 | Glass = structure | Frosted panels group content; borders stay hairline-thin |
 | Motion = proof of polish | Fade-in on scroll only; no hover theatrics beyond color/opacity |
 
-**Structural model:** Brittany Chiang (sticky nav, section hierarchy, scannable).  
-**Visual feel:** Minimal Geist + teal accent + glass.
+**Structural model:** Single-page portfolio with floating dock nav, section hierarchy, scannable numbered headings.  
+**Visual feel:** Minimal Geist + teal accent + glass. Flat page background.
 
 ---
 
@@ -139,10 +139,11 @@
 | `container-x` | `px-6 md:px-8 lg:px-12` | Horizontal padding |
 | `content-max` | `max-w-6xl` | Page container |
 | `prose-max` | `max-w-2xl` | Long-form text |
-| `nav-height` | `h-16` | Sticky header |
-| `sidebar-width` | `w-64 lg:w-72` | Sticky side nav (Brittany-style, Phase 2) |
+| `nav-height` | `h-16` | Sticky top header |
+| `header-max` | `max-w-6xl` | Header inner width (matches content) |
+| `scroll-offset` | `scroll-mt-20` | Anchor offset for sticky header |
 
-**Grid:** Single column mobile; `lg:grid lg:grid-cols-[240px_1fr] lg:gap-16` for nav + content on desktop.
+**Grid:** Single column on all breakpoints. Full-width scrollable content; floating dock at bottom.
 
 ---
 
