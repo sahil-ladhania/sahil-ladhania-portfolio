@@ -97,6 +97,15 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 
+  .no-visible-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-visible-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   ::selection {
     background-color: var(--accent-muted);
     color: var(--foreground);

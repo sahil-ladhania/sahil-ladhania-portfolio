@@ -4,6 +4,7 @@ import {
   getProjects,
   getZyntohouseContent,
   getCurrentlyBuilding,
+  getHeroTerminalContent,
 } from "@/lib/content/loader";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import { Hero } from "@/components/sections/Hero";
@@ -20,10 +21,11 @@ export default function Home(): React.ReactElement {
   const projects = getProjects();
   const zyntohouse = getZyntohouseContent();
   const currentlyBuilding = getCurrentlyBuilding();
+  const heroTerminal = getHeroTerminalContent();
 
   return (
     <SiteLayout contact={siteMeta.contact}>
-      <Hero hero={siteMeta.hero} contact={siteMeta.contact} />
+      <Hero hero={siteMeta.hero} contact={siteMeta.contact} terminal={heroTerminal} />
       <ProofStrip proof={siteMeta.proof} />
       <AboutSection about={about} contact={siteMeta.contact} />
       <WorkSection projects={projects} />

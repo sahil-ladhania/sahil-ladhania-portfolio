@@ -74,3 +74,19 @@ export interface AboutContent {
   highlights: string[];
   techStack: string[];
 }
+
+export interface HeroTerminalSequence {
+  command: string;
+  output: string[];
+}
+
+export interface HeroTerminalContent {
+  username: string;
+  shell: string;
+  typingSpeed: number;
+  delayBetweenCommands: number;
+  initialDelay: number;
+  enableSound: boolean;
+  commands: string[];
+  outputs: Record<number, string[]>;
+}

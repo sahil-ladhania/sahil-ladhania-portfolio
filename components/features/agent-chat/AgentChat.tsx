@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { IconSparkles } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useAgentChat } from "@/components/features/agent-chat/AgentChatProvider";
 import { cn } from "@/lib/cn";
@@ -12,6 +13,7 @@ interface Message {
 
 export function AgentChat(): React.ReactElement {
   const { isOpen, openChat, closeChat } = useAgentChat();
+  const [triggerHovered, setTriggerHovered] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -83,17 +85,31 @@ export function AgentChat(): React.ReactElement {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={openChat}
-        className="fixed top-5 right-6 z-40 flex items-center gap-2 rounded-full border border-glass-border bg-glass-bg px-4 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur-xl transition-colors hover:border-border-strong dark:shadow-none"
-        aria-label="Talk to Sahil's agent"
-      >
-        <span className="text-accent" aria-hidden="true">
-          ✦
-        </span>
-        Talk to me
-      </button>
+      {!isOpen && (
+        <button
+          type="button"
+          onClick={openChat}
+          onMouseEnter={() => setTriggerHovered(true)}
+          onMouseLeave={() => setTriggerHovered(false)}
+          className="fixed top-5 right-6 z-40 flex h-11 w-11 items-center justify-center overflow-visible rounded-full border border-border-strong bg-glass-bg/75 shadow-[0_8px_32px_rgba(8,74,58,0.12)] backdrop-blur-2xl backdrop-saturate-150 ring-1 ring-white/50 transition-colors hover:border-accent/40 hover:bg-accent-muted/30 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] dark:ring-white/10"
+          aria-label="Ask my agent anything"
+        >
+          <AnimatePresence>
+            {triggerHovered && (
+              <motion.span
+                initial={{ opacity: 0, x: 6 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 4 }}
+                transition={{ duration: 0.15 }}
+                className="pointer-events-none absolute top-1/2 right-[calc(100%+0.75rem)] w-max max-w-[11rem] -translate-y-1/2 rounded-md border border-border-strong bg-glass-bg/90 px-2.5 py-1.5 text-center text-xs font-medium text-foreground shadow-md backdrop-blur-xl"
+              >
+                Ask my agent anything
+              </motion.span>
+            )}
+          </AnimatePresence>
+          <IconSparkles className="h-5 w-5 text-accent" stroke={1.75} aria-hidden="true" />
+        </button>
+      )}
 
       <AnimatePresence>
         {isOpen && (

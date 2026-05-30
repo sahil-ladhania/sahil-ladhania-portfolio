@@ -6,6 +6,7 @@ import matter from "gray-matter";
 import type {
   AboutContent,
   CurrentlyBuilding,
+  HeroTerminalContent,
   Post,
   Project,
   SiteMeta,
@@ -130,4 +131,28 @@ export function getCurrentlyBuilding(): CurrentlyBuilding[] {
   const { data } = readMarkdown("site.md");
 
   return (data.currentlyBuilding as CurrentlyBuilding[]) ?? [];
+}
+
+export function getHeroTerminalContent(): HeroTerminalContent {
+  const { data } = readMarkdown("hero-terminal.md");
+  const sequences =
+    (data.sequences as { command: string; output: string[] }[]) ?? [];
+
+  const commands = sequences.map((s) => s.command);
+  const outputs: Record<number, string[]> = {};
+
+  sequences.forEach((s, index) => {
+    outputs[index] = s.output;
+  });
+
+  return {
+    username: String(data.username ?? "sahil"),
+    shell: String(data.shell ?? "zsh"),
+    typingSpeed: Number(data.typingSpeed ?? 45),
+    delayBetweenCommands: Number(data.delayBetweenCommands ?? 600),
+    initialDelay: Number(data.initialDelay ?? 800),
+    enableSound: data.enableSound !== false,
+    commands,
+    outputs,
+  };
 }
