@@ -6,7 +6,6 @@ import { Link } from "@/components/ui/Link";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { DownloadCvButton } from "@/components/shared/DownloadCvButton";
 import { TimezoneClock } from "@/components/features/timezone-clock/TimezoneClock";
-import { SpotifyWidget } from "@/components/features/spotify-widget/SpotifyWidget";
 
 const NAV_ITEMS = [
   { label: "About", href: "#about", number: "01." },
@@ -75,7 +74,6 @@ export function SideNav(): React.ReactElement {
       <div className="space-y-4">
         <ThemeToggle />
         <TimezoneClock />
-        <SpotifyWidget />
         <p className="font-mono text-xs text-foreground-subtle">
           © {new Date().getFullYear()} Sahil Ladhania
         </p>

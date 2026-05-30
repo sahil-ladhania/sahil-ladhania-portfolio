@@ -73,7 +73,7 @@ export function ContactForm(): React.ReactElement {
       setSuccess(true);
       setState({ name: "", email: "", message: "", website: "" });
     } catch {
-      setError("Failed to send. Try email instead.");
+      setError("Failed to save. Try LinkedIn or book a call.");
     } finally {
       setLoading(false);
     }
@@ -82,7 +82,7 @@ export function ContactForm(): React.ReactElement {
   if (success) {
     return (
       <p className="text-sm text-success">
-        Message sent. I&apos;ll get back to you.
+        Message received. I&apos;ll get back to you soon.
       </p>
     );
   }

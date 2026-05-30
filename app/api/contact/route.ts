@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { resend } from "@/lib/resend";
-import { env } from "@/config/env";
+import { prisma } from "@/lib/prisma";
 import type { ApiResponse } from "@/types/api.types";
 
 const contactSchema = z.object({
@@ -19,17 +18,17 @@ export async function POST(request: Request): Promise<NextResponse<ApiResponse<n
       return NextResponse.json({ success: false, error: "Invalid submission" }, { status: 400 });
     }
 
-    await resend.emails.send({
-      from: env.CONTACT_EMAIL_FROM,
-      to: env.CONTACT_EMAIL_TO,
-      replyTo: body.email,
-      subject: `Portfolio contact from ${body.name}`,
-      text: body.message,
+    await prisma.contactSubmission.create({
+      data: {
+        name: body.name,
+        email: body.email,
+        message: body.message,
+      },
     });
 
     return NextResponse.json({ success: true, data: null });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Failed to send";
+    const message = error instanceof Error ? error.message : "Failed to save message";
     console.error("POST /api/contact:", message);
     return NextResponse.json({ success: false, error: message }, { status: 500 });
   }

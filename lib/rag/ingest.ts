@@ -97,20 +97,6 @@ export async function reindexAll(): Promise<void> {
     });
   }
 
-  const musicSnapshots = await prisma.musicSnapshot.findMany({
-    take: 20,
-    orderBy: { fetchedAt: "desc" },
-  });
-
-  for (const track of musicSnapshots) {
-    docs.push({
-      sourceType: "music",
-      sourceId: track.spotifyId ?? track.id,
-      title: `${track.trackName} — ${track.artist}`,
-      text: `Sahil listens to ${track.trackName} by ${track.artist}${track.album ? ` from ${track.album}` : ""}.`,
-    });
-  }
-
   for (const doc of docs) {
     await upsertChunks(doc);
   }
