@@ -1,13 +1,20 @@
 import { Container } from "@/components/ui/Container";
 import { DownloadCvButton } from "@/components/shared/DownloadCvButton";
+import { TooltipText } from "@/components/shared/TooltipText";
 import { HeroTerminal } from "@/components/sections/HeroTerminal";
 import { cn } from "@/lib/cn";
-import type { HeroTerminalContent, SiteHero, SiteContact } from "@/types/content.types";
+import type {
+  HeroTerminalContent,
+  SiteHero,
+  SiteContact,
+  TooltipRegistry,
+} from "@/types/content.types";
 
 interface HeroProps {
   hero: SiteHero;
   contact: SiteContact;
   terminal: HeroTerminalContent;
+  tooltips: TooltipRegistry;
 }
 
 const primaryBtn =
@@ -19,6 +26,7 @@ export function Hero({
   hero,
   contact,
   terminal,
+  tooltips,
 }: HeroProps): React.ReactElement {
   return (
     <section id="hero" className="scroll-mt-20 py-20 md:py-28 lg:py-32">
@@ -30,10 +38,12 @@ export function Hero({
               Sahil Ladhania
             </h1>
             <p className="mt-4 text-xl text-foreground">{hero.oneLiner}</p>
-            <p className="mt-4 text-lg text-foreground-muted">{hero.subtext}</p>
+            <p className="mt-4 text-lg text-foreground-muted">
+              <TooltipText text={hero.subtext} tooltips={tooltips} />
+            </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a href="#work" className={cn(primaryBtn)}>
-                See my work
+              <a href="#products" className={cn(primaryBtn)}>
+                See products
               </a>
               <a
                 href={contact.calUrl}

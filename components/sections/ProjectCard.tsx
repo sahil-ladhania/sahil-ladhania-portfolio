@@ -5,7 +5,23 @@ import { Badge } from "@/components/ui/Badge";
 import { Link } from "@/components/ui/Link";
 import { cn } from "@/lib/cn";
 import { ArchitectureDiagram } from "@/components/features/architecture-diagram/ArchitectureDiagram";
+import { ProductLogo } from "@/components/shared/ProductLogo";
 import type { Project } from "@/types/content.types";
+
+function ProjectCardHeader({ project }: { project: Project }): React.ReactElement {
+  return (
+    <div className="flex items-start gap-4">
+      {project.logo ? (
+        <ProductLogo src={project.logo} alt={project.name} />
+      ) : null}
+      <div className="min-w-0 flex-1 space-y-2">
+        <h3 className="text-xl font-semibold text-foreground">{project.name}</h3>
+        <p className="font-mono text-sm text-foreground-subtle">{project.role}</p>
+        <p className="text-foreground-muted">{project.outcomeLine}</p>
+      </div>
+    </div>
+  );
+}
 
 interface ProjectCardProps {
   project: Project;
@@ -22,10 +38,8 @@ export function ProjectCard({
     return (
       <GlassCard>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-foreground">{project.name}</h3>
-            <p className="font-mono text-sm text-foreground-subtle">{project.role}</p>
-            <p className="text-foreground-muted">{project.outcomeLine}</p>
+          <div className="min-w-0 flex-1 space-y-4">
+            <ProjectCardHeader project={project} />
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech) => (
                 <Badge key={tech}>{tech}</Badge>
@@ -49,14 +63,12 @@ export function ProjectCard({
         aria-expanded={isExpanded}
       >
         <div className="flex items-start justify-between gap-4">
-          <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-foreground hover:text-accent">
-              {project.name}
-            </h3>
-            <p className="font-mono text-sm text-foreground-subtle">{project.role}</p>
-            <p className="text-foreground-muted">{project.outcomeLine}</p>
+          <div className="min-w-0 flex-1">
+            <div className="[&_h3]:hover:text-accent">
+              <ProjectCardHeader project={project} />
+            </div>
             {!isExpanded && (
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="mt-2 flex flex-wrap gap-2">
                 {project.techStack.slice(0, 6).map((tech) => (
                   <Badge key={tech}>{tech}</Badge>
                 ))}

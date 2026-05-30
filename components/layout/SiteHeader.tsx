@@ -22,9 +22,9 @@ const DOCK_ICON = "h-full w-full";
 
 const NAV_ICONS: Record<string, React.ReactNode> = {
   About: <IconUserCircle className={DOCK_ICON} stroke={1.75} />,
-  Work: <IconLayoutGrid className={DOCK_ICON} stroke={1.75} />,
+  Products: <IconLayoutGrid className={DOCK_ICON} stroke={1.75} />,
   Now: <IconSparkles className={DOCK_ICON} stroke={1.75} />,
-  Studio: <IconWand className={DOCK_ICON} stroke={1.75} />,
+  Experience: <IconWand className={DOCK_ICON} stroke={1.75} />,
   Contact: <IconMail className={DOCK_ICON} stroke={1.75} />,
 };
 

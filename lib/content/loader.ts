@@ -10,6 +10,7 @@ import type {
   Post,
   Project,
   SiteMeta,
+  TooltipRegistry,
   ZyntohouseContent,
 } from "@/types/content.types";
 
@@ -55,6 +56,7 @@ function parseProject(data: Record<string, unknown>, body: string): Project {
   return {
     slug: String(data.slug),
     name: String(data.name),
+    logo: String(data.logo ?? ""),
     role: String(data.role),
     outcomeLine: String(data.outcomeLine),
     techStack: (data.techStack as string[]) ?? [],
@@ -102,6 +104,7 @@ export function getZyntohouseContent(): {
 
   return {
     content: {
+      logo: String(data.logo ?? "/logos/zyntohouse.png"),
       tagline: String(data.tagline),
       proofPoints: (data.proofPoints as string[]) ?? [],
       services: (data.services as string[]) ?? [],
@@ -156,3 +159,10 @@ export function getHeroTerminalContent(): HeroTerminalContent {
     outputs,
   };
 }
+
+export function getTooltips(): TooltipRegistry {
+  const { data } = readMarkdown("tooltips.md");
+  return (data.tooltips as TooltipRegistry) ?? {};
+}
+
+export { getProofClientTooltipId } from "@/lib/tooltips";

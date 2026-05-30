@@ -6,6 +6,7 @@ export interface ProjectLink {
 export interface Project {
   slug: string;
   name: string;
+  logo: string;
   role: string;
   outcomeLine: string;
   techStack: string[];
@@ -27,14 +28,18 @@ export interface Post {
   url?: string;
 }
 
+export type CurrentlyBuildingStatus = "building-now" | "in-progress";
+
 export interface CurrentlyBuilding {
   name: string;
-  status: "in-progress" | "shipping-soon";
+  status: CurrentlyBuildingStatus;
   description: string;
   techStack: string[];
+  logo?: string;
 }
 
 export interface ZyntohouseContent {
+  logo: string;
   tagline: string;
   proofPoints: string[];
   services: string[];
@@ -74,6 +79,14 @@ export interface AboutContent {
   highlights: string[];
   techStack: string[];
 }
+
+export interface TooltipDefinition {
+  label: string;
+  body: string;
+  href?: string;
+}
+
+export type TooltipRegistry = Record<string, TooltipDefinition>;
 
 export interface HeroTerminalSequence {
   command: string;

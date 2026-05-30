@@ -1,6 +1,7 @@
 ---
 slug: yummmzo
 name: YUMMMZO
+logo: /logos/yummmzo.png
 role: Lead Engineer
 outcomeLine: Food delivery app with 800ms → 120ms discovery latency and Stripe checkout
 order: 3

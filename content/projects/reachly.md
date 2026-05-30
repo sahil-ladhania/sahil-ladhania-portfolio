@@ -1,6 +1,7 @@
 ---
 slug: reachly
 name: Reachly
+logo: /logos/reachly.png
 role: Founder & Lead Engineer
 outcomeLine: Agentic outbound SaaS with RAG-grounded personalization and human approval gates
 order: 2

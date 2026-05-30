@@ -1,6 +1,7 @@
 ---
 slug: tbk-crm
 name: TBK CRM
+logo: /logos/tbk-crm.svg
 role: Founder & Lead Engineer
 outcomeLine: Multi-tenant hospitality SaaS powering 50+ clients and 50+ properties
 order: 1

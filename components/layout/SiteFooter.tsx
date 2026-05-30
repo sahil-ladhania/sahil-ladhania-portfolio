@@ -12,8 +12,7 @@ export function SiteFooter(): React.ReactElement {
           Back to top
         </Link>
         <p className="font-mono text-xs text-foreground-subtle">
-          © {new Date().getFullYear()} Sahil Ladhania · Built with Next.js, deployed on
-          Vercel.
+          © {new Date().getFullYear()} Sahil Ladhania
         </p>
       </div>
     </footer>

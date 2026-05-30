@@ -1,29 +1,31 @@
-import ReactMarkdown from "react-markdown";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Link } from "@/components/ui/Link";
-import type { AboutContent, SiteContact } from "@/types/content.types";
+import { TooltipParagraphs, TooltipText } from "@/components/shared/TooltipText";
+import type { AboutContent, SiteContact, TooltipRegistry } from "@/types/content.types";
 
 interface AboutSectionProps {
   about: AboutContent;
   contact: SiteContact;
+  tooltips: TooltipRegistry;
 }
 
 export function AboutSection({
   about,
   contact,
+  tooltips,
 }: AboutSectionProps): React.ReactElement {
   return (
     <Section id="about">
       <Container>
         <SectionHeading number="01." title="About" />
         <div className="grid gap-12 md:grid-cols-2">
-          <div className="prose prose-neutral max-w-prose space-y-4 text-foreground-muted dark:prose-invert">
-            <ReactMarkdown>{about.body}</ReactMarkdown>
-            <div className="flex gap-4 pt-2 not-prose">
+          <div className="max-w-prose space-y-4 text-foreground-muted">
+            <TooltipParagraphs content={about.body} tooltips={tooltips} />
+            <div className="flex gap-4 pt-2">
               <Link href={contact.github} variant="external">
                 GitHub
               </Link>
@@ -37,7 +39,9 @@ export function AboutSection({
               {about.highlights.map((item) => (
                 <li key={item} className="flex gap-2">
                   <span className="text-accent">▹</span>
-                  <span>{item}</span>
+                  <span>
+                    <TooltipText text={item} tooltips={tooltips} />
+                  </span>
                 </li>
               ))}
             </ul>

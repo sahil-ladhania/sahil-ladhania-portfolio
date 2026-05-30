@@ -1,6 +1,7 @@
 ---
 slug: lulu
 name: Lulu
+logo: /logos/lulu.png
 role: Founder & Lead Engineer
 outcomeLine: Voice-first, personality-based matchmaking — in progress
 order: 4

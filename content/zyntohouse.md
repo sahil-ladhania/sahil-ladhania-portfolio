@@ -1,4 +1,5 @@
 ---
+logo: /logos/zyntohouse.png
 tagline: A tech studio I founded to build and ship products for clients who need a technical partner — not a slide deck.
 proofPoints:
   - 10 months operating — not a side project on paper

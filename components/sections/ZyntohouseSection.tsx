@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/components/ui/Link";
+import { ProductLogo } from "@/components/shared/ProductLogo";
 import type { ZyntohouseContent } from "@/types/content.types";
 
 interface ZyntohouseSectionProps {
@@ -19,11 +20,14 @@ export function ZyntohouseSection({
   return (
     <Section id="zyntohouse">
       <Container>
-        <SectionHeading number="04." title="Studio" />
+        <SectionHeading number="04." title="Experience" />
         <GlassCard className="max-w-3xl space-y-6">
-          <div>
+          <div className="flex items-start gap-4">
+            <ProductLogo src={content.logo} alt="Zyntohouse" size="md" />
+            <div>
             <h3 className="text-2xl font-semibold text-foreground">Zyntohouse</h3>
             <p className="mt-2 text-lg text-foreground-muted">{content.tagline}</p>
+            </div>
           </div>
           <div className="prose prose-neutral max-w-prose text-foreground-muted dark:prose-invert">
             <ReactMarkdown>{body}</ReactMarkdown>

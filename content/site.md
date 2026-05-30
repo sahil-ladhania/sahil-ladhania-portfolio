@@ -2,7 +2,7 @@
 hero:
   greeting: "Hi, I'm Sahil."
   oneLiner: "I build production AI systems and full-stack products — from zero to paying users."
-  subtext: "Full-stack and AI engineer. Founder of [Zyntohouse](#zyntohouse). I've shipped multi-tenant SaaS, agentic pipelines, and consumer apps used by real clients — not demos."
+  subtext: "Full-stack and AI engineer. Founder of {{zyntohouse}}. I've shipped {{multi-tenant-saas}}, {{agentic-pipelines}}, and consumer apps used by real clients — not demos."
 contact:
   email: sahilladhania5@gmail.com
   calUrl: https://cal.com/sahil-ladhania/lets-build-something
@@ -21,7 +21,8 @@ proof:
     - Studio North
 currentlyBuilding:
   - name: Lulu
-    status: in-progress
+    status: building-now
+    logo: /logos/lulu.png
     description: "Voice-first matchmaking app. The thesis: personality and conversation matter more than photos and swipe mechanics. Building agentic pipelines for personality inference, voice interaction, and match recommendations — early stage, details intentionally light."
     techStack:
       - LangGraph
@@ -29,12 +30,8 @@ currentlyBuilding:
       - GPT-4o
       - Next.js
       - PostgreSQL
-  - name: sahilladhania.com
-    status: shipping-soon
-    description: "This site — including a RAG chatbot grounded strictly on my CV and project data. Because if I'm going to talk about AI, the portfolio should use it."
-    techStack:
-      - Next.js
-      - LangChain.js
-      - pgVector
-      - GPT-4o
+  - name: Castra
+    status: in-progress
+    description: "In progress — I'll add the full story here soon."
+    techStack: []
 ---

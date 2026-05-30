@@ -14,9 +14,9 @@ interface CommandPaletteProps {
 
 const NAV_ITEMS = [
   { label: "Go to About", href: "#about" },
-  { label: "Go to Work", href: "#work" },
+  { label: "Go to Products", href: "#products" },
   { label: "Go to Now", href: "#now" },
-  { label: "Go to Studio", href: "#zyntohouse" },
+  { label: "Go to Experience", href: "#zyntohouse" },
   { label: "Go to Contact", href: "#contact" },
 ];
 

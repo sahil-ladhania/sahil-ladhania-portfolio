@@ -1,12 +1,14 @@
 import { Container } from "@/components/ui/Container";
 import { GlassCard } from "@/components/ui/GlassCard";
-import type { SiteProof } from "@/types/content.types";
+import { ProofClientList } from "@/components/sections/ProofClientList";
+import type { SiteProof, TooltipRegistry } from "@/types/content.types";
 
 interface ProofStripProps {
   proof: SiteProof;
+  tooltips: TooltipRegistry;
 }
 
-export function ProofStrip({ proof }: ProofStripProps): React.ReactElement {
+export function ProofStrip({ proof, tooltips }: ProofStripProps): React.ReactElement {
   return (
     <section id="proof" className="scroll-mt-20 py-12">
       <Container>
@@ -18,10 +20,8 @@ export function ProofStrip({ proof }: ProofStripProps): React.ReactElement {
             <span className="font-medium">{proof.testimonial.author}</span>
             <span className="text-foreground-muted"> — {proof.testimonial.role}</span>
           </p>
-          <div className="flex flex-wrap gap-4 font-mono text-xs text-foreground-subtle">
-            {proof.clients.map((client) => (
-              <span key={client}>{client}</span>
-            ))}
+          <div className="font-mono text-xs text-foreground-subtle">
+            <ProofClientList clients={proof.clients} tooltips={tooltips} />
           </div>
         </GlassCard>
       </Container>

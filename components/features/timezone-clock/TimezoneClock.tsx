@@ -23,7 +23,7 @@ export function TimezoneClock({ className }: { className?: string }): React.Reac
 
   return (
     <p className={cn("font-mono text-xs text-foreground-subtle", className)}>
-      New Delhi · {time || "—:—"} IST
+      Bangalore · {time || "—:—"} IST
     </p>
   );
 }
