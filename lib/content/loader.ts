@@ -60,12 +60,17 @@ function parseProject(data: Record<string, unknown>, body: string): Project {
     role: String(data.role),
     outcomeLine: String(data.outcomeLine),
     techStack: (data.techStack as string[]) ?? [],
+    contentVariant:
+      data.contentVariant === "curiosity" ? "curiosity" : "case-study",
+    about: extractSection(body, "About"),
+    highlights: (data.highlights as string[]) ?? [],
     problem: extractSection(body, "Problem"),
     solution: extractSection(body, "Solution"),
     result: extractSection(body, "Result"),
     links: data.links as Project["links"],
     hasArchitectureDiagram: Boolean(data.hasArchitectureDiagram),
     expandInWork: data.expandInWork !== false,
+    showResult: data.showResult !== false,
     order: Number(data.order),
   };
 }

@@ -3,7 +3,6 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Badge } from "@/components/ui/Badge";
 import { Link } from "@/components/ui/Link";
-import { cn } from "@/lib/cn";
 import { ArchitectureDiagram } from "@/components/features/architecture-diagram/ArchitectureDiagram";
 import { ProductLogo } from "@/components/shared/ProductLogo";
 import type { Project } from "@/types/content.types";
@@ -68,7 +67,13 @@ export function ProjectCard({
               <ProjectCardHeader project={project} />
             </div>
             {!isExpanded && (
-              <div className="mt-2 flex flex-wrap gap-2">
+              <div className="mt-2 flex flex-wrap items-center gap-2">
+                {project.contentVariant === "curiosity" ? (
+                  <Badge variant="accent">Curiosity project</Badge>
+                ) : null}
+                {!project.showResult && project.contentVariant !== "curiosity" ? (
+                  <Badge variant="accent">Building now</Badge>
+                ) : null}
                 {project.techStack.slice(0, 6).map((tech) => (
                   <Badge key={tech}>{tech}</Badge>
                 ))}
@@ -83,18 +88,40 @@ export function ProjectCard({
 
       {isExpanded && (
         <div className="mt-6 space-y-6 border-t border-border pt-6">
-          <div>
-            <h4 className="mb-2 font-mono text-xs uppercase text-accent">Problem</h4>
-            <p className="text-foreground-muted">{project.problem}</p>
-          </div>
-          <div>
-            <h4 className="mb-2 font-mono text-xs uppercase text-accent">Solution</h4>
-            <p className="text-foreground-muted">{project.solution}</p>
-          </div>
-          <div>
-            <h4 className="mb-2 font-mono text-xs uppercase text-accent">Result</h4>
-            <p className="text-foreground-muted">{project.result}</p>
-          </div>
+          {project.contentVariant === "curiosity" ? (
+            <>
+              <p className="text-foreground-muted">{project.about}</p>
+              {project.highlights.length > 0 ? (
+                <div>
+                  <h4 className="mb-2 font-mono text-xs uppercase text-accent">
+                    What&apos;s inside
+                  </h4>
+                  <ul className="list-inside list-disc space-y-1 text-foreground-muted">
+                    {project.highlights.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </>
+          ) : (
+            <>
+              <div>
+                <h4 className="mb-2 font-mono text-xs uppercase text-accent">Problem</h4>
+                <p className="text-foreground-muted">{project.problem}</p>
+              </div>
+              <div>
+                <h4 className="mb-2 font-mono text-xs uppercase text-accent">Solution</h4>
+                <p className="text-foreground-muted">{project.solution}</p>
+              </div>
+              {project.showResult ? (
+                <div>
+                  <h4 className="mb-2 font-mono text-xs uppercase text-accent">Result</h4>
+                  <p className="text-foreground-muted">{project.result}</p>
+                </div>
+              ) : null}
+            </>
+          )}
           {project.hasArchitectureDiagram && (
             <ArchitectureDiagram slug={project.slug} name={project.name} />
           )}

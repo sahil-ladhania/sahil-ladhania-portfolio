@@ -3,6 +3,8 @@ export interface ProjectLink {
   href: string;
 }
 
+export type ProjectContentVariant = "case-study" | "curiosity";
+
 export interface Project {
   slug: string;
   name: string;
@@ -10,12 +12,16 @@ export interface Project {
   role: string;
   outcomeLine: string;
   techStack: string[];
+  contentVariant: ProjectContentVariant;
+  about: string;
+  highlights: string[];
   problem: string;
   solution: string;
   result: string;
   links?: ProjectLink[];
   hasArchitectureDiagram: boolean;
   expandInWork: boolean;
+  showResult: boolean;
   order: number;
 }
 

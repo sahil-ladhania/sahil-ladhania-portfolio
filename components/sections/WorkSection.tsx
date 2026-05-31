@@ -14,7 +14,7 @@ export function WorkSection({ projects }: WorkSectionProps): React.ReactElement 
       <Container>
         <SectionHeading number="02." title="Products" />
         <p className="mb-8 max-w-prose text-foreground-muted">
-          Products I&apos;ve built and shipped. Each one started as a real problem — not a portfolio piece.
+          Products I&apos;ve built and shipped. Each one started as a real problem, not a portfolio piece.
         </p>
         <ProjectList projects={projects} />
       </Container>

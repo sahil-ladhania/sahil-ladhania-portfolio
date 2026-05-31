@@ -1,8 +1,8 @@
 ---
 hero:
   greeting: "Hi, I'm Sahil."
-  oneLiner: "I build production AI systems and full-stack products — from zero to paying users."
-  subtext: "Full-stack and AI engineer. Founder of {{zyntohouse}}. I've shipped {{multi-tenant-saas}}, {{agentic-pipelines}}, and consumer apps used by real clients — not demos."
+  oneLiner: "I build production AI systems and full-stack products, from zero to paying users."
+  subtext: "Full-stack and AI engineer. Founder of {{zyntohouse}}. I've shipped {{multi-tenant-saas}}, {{agentic-pipelines}}, and consumer apps used by real clients, not demos."
 contact:
   email: sahilladhania5@gmail.com
   calUrl: https://cal.com/sahil-ladhania/lets-build-something
@@ -23,15 +23,19 @@ currentlyBuilding:
   - name: Lulu
     status: building-now
     logo: /logos/lulu.png
-    description: "Voice-first matchmaking app. The thesis: personality and conversation matter more than photos and swipe mechanics. Building agentic pipelines for personality inference, voice interaction, and match recommendations — early stage, details intentionally light."
+    description: "Early-stage matchmaking product for Indian Gen Z, fixing what photo-first apps get wrong. Details intentionally light while we're building."
     techStack:
       - LangGraph
       - Voice AI
-      - GPT-4o
       - Next.js
       - PostgreSQL
   - name: Castra
-    status: in-progress
-    description: "In progress — I'll add the full story here soon."
-    techStack: []
+    status: building-now
+    logo: /logos/castra.svg
+    description: "AI creative intelligence that ingests reviews, Reddit, ad comments, and support tickets, then outputs ranked ad angles, hooks, and UGC briefs grounded in real customer language."
+    techStack:
+      - Next.js
+      - PostgreSQL
+      - GPT-4o
+      - pgVector
 ---

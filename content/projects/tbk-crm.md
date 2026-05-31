@@ -1,34 +1,27 @@
 ---
 slug: tbk-crm
-name: TBK CRM
+name: TBK Villas
 logo: /logos/tbk-crm.svg
 role: Founder & Lead Engineer
-outcomeLine: Multi-tenant hospitality SaaS powering 50+ clients and 50+ properties
+outcomeLine: Villa management platform powering a live Goa rental business
 order: 1
 hasArchitectureDiagram: true
 expandInWork: true
 techStack:
   - Node.js
   - PostgreSQL
-  - Redis
-  - BullMQ
   - WhatsApp API
   - Puppeteer
-links:
-  - label: Live app
-    href: "#"
-  - label: Case study
-    href: "#"
 ---
 
 ## Problem
 
-Villa and hospitality operators were running bookings, guest comms, and ops across WhatsApp threads, spreadsheets, and disconnected tools. Nothing scaled past a handful of properties.
+A Goa villa rental business ran entirely on WhatsApp and Excel: no central system, no owner visibility, and manual booking confirmations that were slow and error-prone.
 
 ## Solution
 
-Built a multi-tenant SaaS CRM with property management, automated guest messaging via WhatsApp Cloud API, PDF generation, Gmail SMTP, Google Sheets/Drive sync, and role-based access — one platform per client, isolated data.
+Built a villa platform with three apps on one backend: admin dashboard for bookings and finances, owner portal for property performance, and a public booking page. Confirmed bookings auto-generate a PDF voucher and send it to the guest via WhatsApp.
 
 ## Result
 
-50+ paying clients. 50+ properties onboarded. Automated workflows replaced hours of manual coordination daily. System handles concurrent PDF generation and message queues without choking.
+Live for one business with two active admins. Booking → voucher → WhatsApp runs end to end with no manual steps. Backend handles 620 RPS at 26ms p95 with zero errors at 1,000 concurrent users. Single source of truth for bookings, revenue, and guest comms.

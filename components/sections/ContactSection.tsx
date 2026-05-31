@@ -1,12 +1,7 @@
-"use client";
-
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container } from "@/components/ui/Container";
-import { Divider } from "@/components/ui/Divider";
 import { DownloadCvButton } from "@/components/shared/DownloadCvButton";
-import { ContactForm } from "@/components/features/contact-form/ContactForm";
-import { cn } from "@/lib/cn";
 import type { SiteContact } from "@/types/content.types";
 
 interface ContactSectionProps {
@@ -21,13 +16,14 @@ const secondaryBtn =
 export function ContactSection({ contact }: ContactSectionProps): React.ReactElement {
   return (
     <Section id="contact">
-      <Container narrow>
+      <Container>
         <SectionHeading number="05." title="Contact" />
         <h3 className="text-xl font-semibold text-foreground">
           Have a project, a role, or a problem worth solving? Reach out.
         </h3>
         <p className="mt-2 max-w-prose text-foreground-muted">
-          Fastest way to reach me is a call. LinkedIn works too. Email if you prefer async.
+          Book a call if you want to talk live. LinkedIn DMs and email work great too. No forms,
+          no friction.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-4">
@@ -35,25 +31,14 @@ export function ContactSection({ contact }: ContactSectionProps): React.ReactEle
             Book a 30-min call
           </a>
           <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className={secondaryBtn}>
-            LinkedIn
+            Message on LinkedIn
           </a>
-          <button
-            type="button"
-            onClick={() => void navigator.clipboard.writeText(contact.email)}
-            className="text-sm text-foreground-muted hover:text-accent"
-          >
-            {contact.email}
-          </button>
+          <a href={`mailto:${contact.email}`} className={secondaryBtn}>
+            Email me
+          </a>
         </div>
 
-        <Divider className="my-10" />
-
-        <p className="mb-4 font-mono text-xs uppercase text-foreground-subtle">
-          Or send a message
-        </p>
-        <ContactForm />
-
-        <div className="mt-8">
+        <div className="mt-10">
           <DownloadCvButton />
         </div>
       </Container>

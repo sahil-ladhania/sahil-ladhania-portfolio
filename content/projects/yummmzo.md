@@ -2,31 +2,35 @@
 slug: yummmzo
 name: YUMMMZO
 logo: /logos/yummmzo.png
-role: Lead Engineer
-outcomeLine: Food delivery app with 800ms → 120ms discovery latency and Stripe checkout
+role: Founder & Lead Engineer
+outcomeLine: My first full-stack build. Curiosity project, deployed like it's real
 order: 3
+contentVariant: curiosity
 hasArchitectureDiagram: false
 expandInWork: true
 techStack:
+  - React
+  - TypeScript
   - Node.js
+  - Express
+  - Prisma
+  - MySQL
   - Redis
   - BullMQ
-  - Stripe
-  - JWT
-  - PostgreSQL
+  - Razorpay
+highlights:
+  - "Multi-dashboard architecture: user, restaurant owner, delivery partner"
+  - Haversine-based restaurant discovery
+  - Redis cart, coupon engine, multi-restaurant conflict handling
+  - Razorpay payments and full order lifecycle
+  - JWT auth, RBAC, email verification, password reset
+  - 15,000+ seeded menu items across Indian cities
+  - Deployed on Hostinger VPS + Vercel with PM2, Nginx, SSL
 links:
   - label: Live app
-    href: "#"
+    href: https://yummmzo.com
 ---
 
-## Problem
+## About
 
-Restaurant discovery on the platform was slow — users bounced before seeing results. Token management needed to handle logout and session invalidation securely at scale.
-
-## Solution
-
-Implemented Haversine-based restaurant discovery with Redis caching layer, BullMQ for async order processing, Stripe payment integration, and JWT auth with Redis token blacklisting for secure session management.
-
-## Result
-
-Discovery latency dropped from 800ms to 120ms. 2,000+ orders processed in beta. Secure token invalidation on logout — no stale sessions.
+Full-stack food delivery platform built from scratch to learn end-to-end product engineering: multi-role dashboards, real-time orders, payments, and production deployment. Built for curiosity. Deployed like it's real.

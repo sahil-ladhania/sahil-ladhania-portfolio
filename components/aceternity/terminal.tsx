@@ -471,7 +471,7 @@ export function Terminal({
           </div>
           <div className="flex-1 text-center">
             <span className="truncate text-xs text-foreground-muted">
-              {username} — {shell}
+              {username} · {shell}
             </span>
           </div>
           <div className="w-[52px]" />

@@ -18,7 +18,7 @@ export function ProofStrip({ proof, tooltips }: ProofStripProps): React.ReactEle
           </blockquote>
           <p className="text-sm text-foreground">
             <span className="font-medium">{proof.testimonial.author}</span>
-            <span className="text-foreground-muted"> — {proof.testimonial.role}</span>
+            <span className="text-foreground-muted">, {proof.testimonial.role}</span>
           </p>
           <div className="font-mono text-xs text-foreground-subtle">
             <ProofClientList clients={proof.clients} tooltips={tooltips} />
