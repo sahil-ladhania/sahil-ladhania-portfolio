@@ -44,9 +44,9 @@ export async function handleAgentChat(
   const modelMessages = await convertToModelMessages(uiMessages);
 
   const result = streamText({
-    model: openaiProvider("gpt-4o"),
-    maxOutputTokens: 500,
-    temperature: 0.3,
+    model: openaiProvider("gpt-4o-mini"),
+    maxOutputTokens: 600,
+    temperature: 0.2,
     system: systemPrompt,
     messages: modelMessages,
   });

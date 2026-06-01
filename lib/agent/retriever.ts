@@ -11,7 +11,7 @@ export interface RetrievedChunk {
 
 export async function retrieveContext(
   query: string,
-  limit = 5,
+  limit = 8,
 ): Promise<RetrievedChunk[]> {
   const embedding = await embedText(query);
   const vectorString = `[${embedding.join(",")}]`;

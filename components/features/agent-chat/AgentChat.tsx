@@ -21,6 +21,17 @@ export function AgentChat(): React.ReactElement {
   const [triggerHovered, setTriggerHovered] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
   const bottomRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const adjustTextareaHeight = (): void => {
+    const textarea = textareaRef.current;
+    if (!textarea) {
+      return;
+    }
+
+    textarea.style.height = "auto";
+    textarea.style.height = `${Math.min(textarea.scrollHeight, 160)}px`;
+  };
 
   const transport = useMemo(
     () => new TextStreamChatTransport({ api: "/api/agent" }),
@@ -32,6 +43,10 @@ export function AgentChat(): React.ReactElement {
   });
 
   const isLoading = status === "submitted" || status === "streaming";
+
+  useEffect(() => {
+    adjustTextareaHeight();
+  }, [input]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -72,7 +87,11 @@ export function AgentChat(): React.ReactElement {
           onClick={openChat}
           onMouseEnter={() => setTriggerHovered(true)}
           onMouseLeave={() => setTriggerHovered(false)}
-          className="fixed top-5 right-6 z-40 flex h-11 w-11 items-center justify-center overflow-visible rounded-full border border-glass-border bg-glass-bg/55 shadow-[var(--glass-dock-shadow)] backdrop-blur-3xl backdrop-saturate-150 ring-1 ring-white/10 transition-colors hover:border-accent/40 hover:bg-accent-muted/30"
+          className={cn(
+            "fixed top-5 right-6 z-50 flex h-11 w-11 items-center justify-center overflow-visible rounded-full",
+            "bg-white/10 text-white shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-3xl backdrop-saturate-150",
+            "transition-colors hover:bg-white/15 [&_svg]:stroke-current",
+          )}
           aria-label="Ask my agent anything"
         >
           <AnimatePresence>
@@ -88,7 +107,7 @@ export function AgentChat(): React.ReactElement {
               </motion.span>
             )}
           </AnimatePresence>
-          <IconSparkles className="h-5 w-5 text-accent" stroke={1.75} aria-hidden="true" />
+          <IconSparkles className="h-5 w-5" stroke={1.75} aria-hidden="true" />
         </button>
       )}
 
@@ -102,7 +121,7 @@ export function AgentChat(): React.ReactElement {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={closeChat}
-              className="fixed inset-0 z-40 bg-foreground/20 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-md"
               aria-label="Close chat sidebar"
             />
 
@@ -111,7 +130,7 @@ export function AgentChat(): React.ReactElement {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="fixed top-0 right-0 z-50 flex h-full w-full max-w-md flex-col border-l border-glass-border bg-glass-bg/90 shadow-[var(--glass-shadow)] backdrop-blur-2xl"
+              className="fixed top-0 right-0 z-50 flex h-full w-full max-w-md flex-col border-l border-border-strong bg-background shadow-[var(--glass-shadow)]"
               aria-label="Agent chat"
             >
               <div className="flex items-center justify-between border-b border-border px-5 py-4">
@@ -144,7 +163,7 @@ export function AgentChat(): React.ReactElement {
                       "rounded-md px-3 py-2 text-sm",
                       msg.role === "user"
                         ? "ml-8 bg-background-subtle text-foreground"
-                        : "mr-8 bg-glass-bg text-foreground-muted",
+                        : "mr-8 border border-border bg-background-subtle text-foreground-muted",
                     )}
                   >
                     {getMessageText(msg)}
@@ -166,20 +185,27 @@ export function AgentChat(): React.ReactElement {
                 }}
                 className="border-t border-border px-5 py-4"
               >
-                <div className="flex items-center gap-2 rounded-lg border border-glass-border bg-glass-bg px-4 py-3 backdrop-blur-xl">
-                  <input
-                    type="text"
+                <div className="flex items-end gap-2 rounded-lg border border-border-strong bg-background-subtle px-4 py-3">
+                  <textarea
+                    ref={textareaRef}
+                    rows={1}
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        handleSubmit();
+                      }
+                    }}
                     placeholder="Ask my agent anything..."
                     aria-label="Ask Sahil's agent"
-                    className="flex-1 bg-transparent text-sm text-foreground placeholder:text-foreground-subtle focus:outline-none"
+                    className="max-h-40 min-h-5 flex-1 resize-none overflow-y-auto bg-transparent text-sm leading-5 text-foreground placeholder:text-foreground-subtle focus:outline-none"
                     autoFocus
                   />
                   <button
                     type="submit"
                     disabled={isLoading || !input.trim()}
-                    className="text-accent hover:text-accent-hover disabled:opacity-50"
+                    className="shrink-0 pb-0.5 text-accent hover:text-accent-hover disabled:opacity-50"
                     aria-label="Send message"
                   >
                     ↑

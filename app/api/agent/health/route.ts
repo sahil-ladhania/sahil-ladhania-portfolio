@@ -12,7 +12,7 @@ export async function GET(): Promise<Response> {
 
     return NextResponse.json({
       status: "online",
-      grounded: "content/agent",
+      grounded: "content/agent + portfolio",
       chunks: chunkCount,
     });
   } catch (error) {
