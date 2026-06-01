@@ -1,5 +1,4 @@
 import { Container } from "@/components/ui/Container";
-import { DownloadCvButton } from "@/components/shared/DownloadCvButton";
 import { TooltipText } from "@/components/shared/TooltipText";
 import { HeroTerminal } from "@/components/sections/HeroTerminal";
 import { cn } from "@/lib/cn";
@@ -34,11 +33,13 @@ export function Hero({
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-prose">
             <p className="mb-4 font-mono text-sm text-accent">{hero.greeting}</p>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground lg:text-5xl">
+            <h1 className="text-xl font-semibold tracking-tight text-foreground">
               Sahil Ladhania
             </h1>
-            <p className="mt-4 text-xl text-foreground">{hero.oneLiner}</p>
-            <p className="mt-4 text-lg text-foreground-muted">
+            <p className="mt-3 text-2xl font-bold tracking-tight text-foreground lg:text-3xl">
+              {hero.oneLiner}
+            </p>
+            <p className="mt-4 max-w-xl text-lg leading-relaxed text-foreground-muted">
               <TooltipText text={hero.subtext} tooltips={tooltips} />
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -53,7 +54,6 @@ export function Hero({
               >
                 Book a call
               </a>
-              <DownloadCvButton variant="ghost" />
             </div>
           </div>
 

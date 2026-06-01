@@ -3,11 +3,11 @@
 import { useMemo } from "react";
 import {
   IconFileTypePdf,
+  IconHammer,
   IconHome2,
   IconLayoutGrid,
   IconMail,
   IconMoon,
-  IconSparkles,
   IconSun,
   IconUserCircle,
   IconWand,
@@ -23,7 +23,7 @@ const DOCK_ICON = "h-full w-full";
 const NAV_ICONS: Record<string, React.ReactNode> = {
   About: <IconUserCircle className={DOCK_ICON} stroke={1.75} />,
   Products: <IconLayoutGrid className={DOCK_ICON} stroke={1.75} />,
-  Now: <IconSparkles className={DOCK_ICON} stroke={1.75} />,
+  "In progress": <IconHammer className={DOCK_ICON} stroke={1.75} />,
   Experience: <IconWand className={DOCK_ICON} stroke={1.75} />,
   Contact: <IconMail className={DOCK_ICON} stroke={1.75} />,
 };

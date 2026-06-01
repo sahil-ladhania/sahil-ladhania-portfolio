@@ -28,7 +28,7 @@ export function CurrentlySection({
   return (
     <Section id="now">
       <Container>
-        <SectionHeading number="03." title="Now" />
+        <SectionHeading number="03." title="In progress" />
         <div className="space-y-6">
           {items.map((item) => (
             <GlassCard key={item.name} className="space-y-4">

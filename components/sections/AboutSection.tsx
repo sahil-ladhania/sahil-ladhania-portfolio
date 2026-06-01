@@ -21,7 +21,7 @@ export function AboutSection({
   return (
     <Section id="about">
       <Container>
-        <SectionHeading number="01." title="About" />
+        <SectionHeading number="04." title="About" />
         <div className="grid gap-12 md:grid-cols-2">
           <div className="max-w-prose space-y-4 text-foreground-muted">
             <TooltipParagraphs content={about.body} tooltips={tooltips} />

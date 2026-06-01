@@ -46,6 +46,8 @@ export interface CurrentlyBuilding {
 
 export interface ZyntohouseContent {
   logo: string;
+  websiteUrl: string;
+  calUrl: string;
   tagline: string;
   proofPoints: string[];
   services: string[];

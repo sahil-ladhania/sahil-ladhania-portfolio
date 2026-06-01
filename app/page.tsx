@@ -9,7 +9,6 @@ import {
 } from "@/lib/content/loader";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import { Hero } from "@/components/sections/Hero";
-import { ProofStrip } from "@/components/sections/ProofStrip";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { WorkSection } from "@/components/sections/WorkSection";
 import { CurrentlySection } from "@/components/sections/CurrentlySection";
@@ -33,11 +32,10 @@ export default function Home(): React.ReactElement {
         terminal={heroTerminal}
         tooltips={tooltips}
       />
-      <ProofStrip proof={siteMeta.proof} tooltips={tooltips} />
-      <AboutSection about={about} contact={siteMeta.contact} tooltips={tooltips} />
+      <ZyntohouseSection content={zyntohouse.content} body={zyntohouse.body} />
       <WorkSection projects={projects} />
       <CurrentlySection items={currentlyBuilding} tooltips={tooltips} />
-      <ZyntohouseSection content={zyntohouse.content} body={zyntohouse.body} />
+      <AboutSection about={about} contact={siteMeta.contact} tooltips={tooltips} />
       <ContactSection contact={siteMeta.contact} />
     </SiteLayout>
   );

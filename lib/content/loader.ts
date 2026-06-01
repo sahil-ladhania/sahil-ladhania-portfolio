@@ -110,6 +110,8 @@ export function getZyntohouseContent(): {
   return {
     content: {
       logo: String(data.logo ?? "/logos/zyntohouse.png"),
+      websiteUrl: String(data.websiteUrl),
+      calUrl: String(data.calUrl),
       tagline: String(data.tagline),
       proofPoints: (data.proofPoints as string[]) ?? [],
       services: (data.services as string[]) ?? [],

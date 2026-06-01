@@ -3,8 +3,6 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container } from "@/components/ui/Container";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { Button } from "@/components/ui/Button";
-import { Link } from "@/components/ui/Link";
 import { ProductLogo } from "@/components/shared/ProductLogo";
 import type { ZyntohouseContent } from "@/types/content.types";
 
@@ -13,6 +11,11 @@ interface ZyntohouseSectionProps {
   body: string;
 }
 
+const primaryBtn =
+  "inline-flex items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-hover dark:text-accent-950";
+const secondaryBtn =
+  "inline-flex items-center justify-center rounded-md border border-border bg-glass-bg px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-border-strong";
+
 export function ZyntohouseSection({
   content,
   body,
@@ -20,7 +23,7 @@ export function ZyntohouseSection({
   return (
     <Section id="zyntohouse">
       <Container>
-        <SectionHeading number="04." title="Experience" />
+        <SectionHeading number="01." title="Experience" />
         <GlassCard className="max-w-3xl space-y-6">
           <div className="flex items-start gap-4">
             <ProductLogo src={content.logo} alt="Zyntohouse" size="md" />
@@ -58,9 +61,24 @@ export function ZyntohouseSection({
               {content.clientTypes.join(" ")}
             </p>
           </div>
-          <Link href="#contact">
-            <Button variant="secondary">Get in touch</Button>
-          </Link>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href={content.calUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={primaryBtn}
+            >
+              Get in touch
+            </a>
+            <a
+              href={content.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={secondaryBtn}
+            >
+              Visit Zyntohouse
+            </a>
+          </div>
         </GlassCard>
       </Container>
     </Section>

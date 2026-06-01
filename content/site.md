@@ -2,7 +2,7 @@
 hero:
   greeting: "Hi, I'm Sahil."
   oneLiner: "I build production AI systems and full-stack products, from zero to paying users."
-  subtext: "Full-stack and AI engineer. Founder of {{zyntohouse}}. I've shipped {{multi-tenant-saas}}, {{agentic-pipelines}}, and consumer apps used by real clients, not demos."
+  subtext: "I split my time between {{zyntohouse}} and products of my own — mostly {{multi-tenant-saas}} and {{agentic-pipelines}} for teams who need software that holds up after launch, not just in a demo."
 contact:
   email: sahilladhania5@gmail.com
   calUrl: https://cal.com/sahil-ladhania/lets-build-something
