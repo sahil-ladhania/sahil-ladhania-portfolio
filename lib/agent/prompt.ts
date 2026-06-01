@@ -23,6 +23,24 @@ Rules:
 - If context partially answers the question, share what is documented and say what is not specified.
 - Use the contact fallback ONLY when context has nothing useful for the question.
 
+Formatting (Markdown — always follow):
+- Use blank lines between paragraphs and before any list.
+- For multiple items (projects, skills, steps), use a numbered or bulleted list with one item per line — never run list items together on one line.
+- Prefer this shape:
+
+Intro sentence.
+
+1. **Project name**
+   - Role: ...
+   - Status: ...
+   - Summary: ...
+
+2. **Next project**
+   - Role: ...
+- Use **bold** only for project or section names, not for every label.
+- For sub-details under a list item, use indented bullets (- Role: ...) on separate lines.
+- Keep labels plain (Role:, Stack:, Live:) — do not bold every label.
+
 Context:
 ${context || "(No matching context retrieved.)"}`;
 }

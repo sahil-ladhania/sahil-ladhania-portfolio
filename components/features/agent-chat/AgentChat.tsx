@@ -5,6 +5,7 @@ import { IconSparkles } from "@tabler/icons-react";
 import { TextStreamChatTransport, type UIMessage } from "ai";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 import { useAgentChat } from "@/components/features/agent-chat/AgentChatProvider";
 import { cn } from "@/lib/cn";
@@ -14,6 +15,59 @@ function getMessageText(message: UIMessage): string {
     .filter((part) => part.type === "text")
     .map((part) => part.text)
     .join("");
+}
+
+const SUGGESTED_PROMPTS = [
+  "What is Sahil currently building?",
+  "Tell me about TBK Villas and his role there",
+  "What projects has he shipped and what stack does he use?",
+  "How can I hire him or book a discovery call?",
+] as const;
+
+function ChatMessageBody({
+  role,
+  text,
+}: {
+  role: UIMessage["role"];
+  text: string;
+}): React.ReactElement {
+  if (role === "user") {
+    return <>{text}</>;
+  }
+
+  return (
+    <ReactMarkdown
+      components={{
+        p: ({ children }) => (
+          <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>
+        ),
+        ul: ({ children }) => (
+          <ul className="mb-2 list-disc space-y-1 pl-5">{children}</ul>
+        ),
+        ol: ({ children }) => (
+          <ol className="mb-2 list-decimal space-y-3 pl-5">{children}</ol>
+        ),
+        li: ({ children }) => (
+          <li className="leading-relaxed [&>ul]:mt-2 [&>ul]:mb-0">{children}</li>
+        ),
+        strong: ({ children }) => (
+          <strong className="font-semibold text-foreground">{children}</strong>
+        ),
+        a: ({ href, children }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent underline underline-offset-2"
+          >
+            {children}
+          </a>
+        ),
+      }}
+    >
+      {text}
+    </ReactMarkdown>
+  );
 }
 
 export function AgentChat(): React.ReactElement {
@@ -73,6 +127,17 @@ export function AgentChat(): React.ReactElement {
     void sendMessage({ text: trimmed });
     setInput("");
   };
+
+  const handleSuggestedPrompt = (prompt: string): void => {
+    if (isLoading) {
+      return;
+    }
+
+    clearError();
+    void sendMessage({ text: prompt });
+  };
+
+  const showSuggestedPrompts = messages.length === 0 && !isLoading;
 
   const errorMessage =
     error?.message === "Failed to fetch"
@@ -151,11 +216,29 @@ export function AgentChat(): React.ReactElement {
               </div>
 
               <div className="flex-1 space-y-3 overflow-y-auto px-5 py-4">
-                {messages.length === 0 && (
-                  <p className="text-sm text-foreground-muted">
-                    Ask about my work, projects, or what I&apos;m into.
-                  </p>
-                )}
+                {showSuggestedPrompts ? (
+                  <div className="space-y-4">
+                    <p className="text-sm text-foreground-muted">
+                      Ask about my work, projects, or what I&apos;m building.
+                    </p>
+                    <div className="flex flex-col gap-3">
+                      {SUGGESTED_PROMPTS.map((prompt) => (
+                        <button
+                          key={prompt}
+                          type="button"
+                          onClick={() => handleSuggestedPrompt(prompt)}
+                          className={cn(
+                            "w-fit cursor-pointer border-0 bg-transparent p-0 text-left text-sm text-foreground-muted",
+                            "underline decoration-dotted decoration-foreground-subtle underline-offset-4",
+                            "transition-colors hover:text-foreground hover:decoration-foreground-muted",
+                          )}
+                        >
+                          {prompt}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
                 {messages.map((msg) => (
                   <div
                     key={msg.id}
@@ -166,7 +249,7 @@ export function AgentChat(): React.ReactElement {
                         : "mr-8 border border-border bg-background-subtle text-foreground-muted",
                     )}
                   >
-                    {getMessageText(msg)}
+                    <ChatMessageBody role={msg.role} text={getMessageText(msg)} />
                   </div>
                 ))}
                 {isLoading && (
