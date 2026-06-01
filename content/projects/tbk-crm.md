@@ -10,8 +10,13 @@ links:
   - label: Live app
     href: https://tbkvillasapp.online
 techStack:
+  - React
+  - JavaScript
+  - TypeScript
   - Node.js
-  - PostgreSQL
+  - Express
+  - MySQL
+  - Prisma
   - WhatsApp API
   - Puppeteer
 ---
@@ -31,7 +36,7 @@ Live for one business with two active admins. Booking → voucher → WhatsApp r
 ## Product Thinking
 
 ### User insight
-Villa owners and ops staff already worked in WhatsApp and spreadsheets, so adoption depended on fitting those habits instead of forcing a dashboard-first workflow. Your shipped system already supports that story through WhatsApp Cloud API automation and bi-directional Google Sheets sync.
+Villa owners and ops staff already worked in WhatsApp and spreadsheets, so adoption depended on fitting those habits instead of forcing a dashboard-first workflow.
 
 ### Key decisions
 One property-management backend handled guest confirmations, booking vouchers, financial analytics, and multi-owner access control, which made the product feel like one operating system instead of scattered tools.

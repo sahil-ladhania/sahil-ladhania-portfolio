@@ -11,7 +11,7 @@
 
 **Result:** Live for one business. Booking → voucher → WhatsApp is end-to-end automated. Backend handles 620 RPS at 26ms p95 with zero errors at 1,000 concurrent users.
 
-**Stack:** Node.js, PostgreSQL, WhatsApp API, Puppeteer  
+**Stack:** React, JavaScript, TypeScript, Node.js, Express, MySQL, Prisma, WhatsApp API, Puppeteer  
 **Live:** https://tbkvillasapp.online
 
 ---

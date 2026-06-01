@@ -9,6 +9,48 @@ import ReactMarkdown from "react-markdown";
 
 import { useAgentChat } from "@/components/features/agent-chat/AgentChatProvider";
 import { cn } from "@/lib/cn";
+import type { SiteContact } from "@/types/content.types";
+
+interface AgentChatProps {
+  contact: SiteContact;
+}
+
+function isAgentUnavailableResponse(text: string): boolean {
+  const trimmed = text.trim();
+  return (
+    trimmed.includes('"Agent temporarily unavailable"') ||
+    trimmed.includes('"success":false') ||
+    trimmed.includes("Agent unavailable")
+  );
+}
+
+function AgentUnavailableFallback({
+  contact,
+}: {
+  contact: SiteContact;
+}): React.ReactElement {
+  return (
+    <p className="leading-relaxed">
+      Sahil is busy right now. Please{" "}
+      <a
+        href={`mailto:${contact.email}`}
+        className="text-accent underline underline-offset-2"
+      >
+        email him
+      </a>
+      , or you can{" "}
+      <a
+        href={contact.calUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-accent underline underline-offset-2"
+      >
+        book a call
+      </a>
+      .
+    </p>
+  );
+}
 
 function getMessageText(message: UIMessage): string {
   return message.parts
@@ -70,7 +112,7 @@ function ChatMessageBody({
   );
 }
 
-export function AgentChat(): React.ReactElement {
+export function AgentChat({ contact }: AgentChatProps): React.ReactElement {
   const { isOpen, openChat, closeChat } = useAgentChat();
   const [triggerHovered, setTriggerHovered] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
@@ -139,10 +181,12 @@ export function AgentChat(): React.ReactElement {
 
   const showSuggestedPrompts = messages.length === 0 && !isLoading;
 
-  const errorMessage =
-    error?.message === "Failed to fetch"
-      ? "Agent unavailable. Try contact links instead."
-      : error?.message;
+  const showAgentUnavailable =
+    Boolean(error) ||
+    messages.some(
+      (msg) =>
+        msg.role === "assistant" && isAgentUnavailableResponse(getMessageText(msg)),
+    );
 
   return (
     <>
@@ -239,24 +283,36 @@ export function AgentChat(): React.ReactElement {
                     </div>
                   </div>
                 ) : null}
-                {messages.map((msg) => (
-                  <div
-                    key={msg.id}
-                    className={cn(
-                      "rounded-md px-3 py-2 text-sm",
-                      msg.role === "user"
-                        ? "ml-8 bg-background-subtle text-foreground"
-                        : "mr-8 border border-border bg-background-subtle text-foreground-muted",
-                    )}
-                  >
-                    <ChatMessageBody role={msg.role} text={getMessageText(msg)} />
-                  </div>
-                ))}
+                {messages.map((msg) => {
+                  const text = getMessageText(msg);
+                  const isUnavailableResponse =
+                    msg.role === "assistant" && isAgentUnavailableResponse(text);
+
+                  if (isUnavailableResponse) {
+                    return null;
+                  }
+
+                  return (
+                    <div
+                      key={msg.id}
+                      className={cn(
+                        "rounded-md px-3 py-2 text-sm",
+                        msg.role === "user"
+                          ? "ml-8 bg-background-subtle text-foreground"
+                          : "mr-8 border border-border bg-background-subtle text-foreground-muted",
+                      )}
+                    >
+                      <ChatMessageBody role={msg.role} text={text} />
+                    </div>
+                  );
+                })}
                 {isLoading && (
                   <p className="text-sm text-foreground-subtle">Thinking...</p>
                 )}
-                {errorMessage && (
-                  <p className="text-sm text-error">{errorMessage}</p>
+                {showAgentUnavailable && (
+                  <div className="mr-8 rounded-md border border-border bg-background-subtle px-3 py-2 text-sm text-foreground-muted">
+                    <AgentUnavailableFallback contact={contact} />
+                  </div>
                 )}
                 <div ref={bottomRef} />
               </div>

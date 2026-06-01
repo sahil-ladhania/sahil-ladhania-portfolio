@@ -23,7 +23,7 @@ export function SiteLayout({
       <SiteHeader />
       <main className="relative z-10 pb-32">{children}</main>
       <SiteFooter />
-      <AgentChat />
+      <AgentChat contact={contact} />
       <CommandPalette contact={contact} />
     </AgentChatProvider>
   );
