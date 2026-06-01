@@ -1,24 +1,37 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useChat } from "@ai-sdk/react";
 import { IconSparkles } from "@tabler/icons-react";
+import { TextStreamChatTransport, type UIMessage } from "ai";
 import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
 import { useAgentChat } from "@/components/features/agent-chat/AgentChatProvider";
 import { cn } from "@/lib/cn";
 
-interface Message {
-  role: "user" | "assistant";
-  content: string;
+function getMessageText(message: UIMessage): string {
+  return message.parts
+    .filter((part) => part.type === "text")
+    .map((part) => part.text)
+    .join("");
 }
 
 export function AgentChat(): React.ReactElement {
   const { isOpen, openChat, closeChat } = useAgentChat();
   const [triggerHovered, setTriggerHovered] = useState<boolean>(false);
-  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  const transport = useMemo(
+    () => new TextStreamChatTransport({ api: "/api/agent" }),
+    [],
+  );
+
+  const { messages, sendMessage, status, error, clearError } = useChat({
+    transport,
+  });
+
+  const isLoading = status === "submitted" || status === "streaming";
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -34,54 +47,22 @@ export function AgentChat(): React.ReactElement {
     return undefined;
   }, [isOpen]);
 
-  const sendMessage = async (): Promise<void> => {
+  const handleSubmit = (event?: { preventDefault?: () => void }): void => {
+    event?.preventDefault?.();
     const trimmed = input.trim();
-    if (!trimmed || loading) return;
-
-    const userMessage: Message = { role: "user", content: trimmed };
-    const nextMessages = [...messages, userMessage];
-    setMessages(nextMessages);
-    setInput("");
-    setLoading(true);
-    setError(null);
-
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages }),
-      });
-
-      if (!res.ok || !res.body) {
-        throw new Error("Chat failed");
-      }
-
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let assistantText = "";
-
-      setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        assistantText += decoder.decode(value, { stream: true });
-        setMessages((prev) => {
-          const updated = [...prev];
-          updated[updated.length - 1] = {
-            role: "assistant",
-            content: assistantText,
-          };
-          return updated;
-        });
-      }
-    } catch {
-      setError("Agent unavailable. Try contact links instead.");
-      setMessages((prev) => prev.slice(0, -1));
-    } finally {
-      setLoading(false);
+    if (!trimmed || isLoading) {
+      return;
     }
+
+    clearError();
+    void sendMessage({ text: trimmed });
+    setInput("");
   };
+
+  const errorMessage =
+    error?.message === "Failed to fetch"
+      ? "Agent unavailable. Try contact links instead."
+      : error?.message;
 
   return (
     <>
@@ -156,9 +137,9 @@ export function AgentChat(): React.ReactElement {
                     Ask about my work, projects, or what I&apos;m into.
                   </p>
                 )}
-                {messages.map((msg, i) => (
+                {messages.map((msg) => (
                   <div
-                    key={`${msg.role}-${i}`}
+                    key={msg.id}
                     className={cn(
                       "rounded-md px-3 py-2 text-sm",
                       msg.role === "user"
@@ -166,20 +147,22 @@ export function AgentChat(): React.ReactElement {
                         : "mr-8 bg-glass-bg text-foreground-muted",
                     )}
                   >
-                    {msg.content}
+                    {getMessageText(msg)}
                   </div>
                 ))}
-                {loading && (
+                {isLoading && (
                   <p className="text-sm text-foreground-subtle">Thinking...</p>
                 )}
-                {error && <p className="text-sm text-error">{error}</p>}
+                {errorMessage && (
+                  <p className="text-sm text-error">{errorMessage}</p>
+                )}
                 <div ref={bottomRef} />
               </div>
 
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  void sendMessage();
+                  handleSubmit();
                 }}
                 className="border-t border-border px-5 py-4"
               >
@@ -195,7 +178,7 @@ export function AgentChat(): React.ReactElement {
                   />
                   <button
                     type="submit"
-                    disabled={loading || !input.trim()}
+                    disabled={isLoading || !input.trim()}
                     className="text-accent hover:text-accent-hover disabled:opacity-50"
                     aria-label="Send message"
                   >

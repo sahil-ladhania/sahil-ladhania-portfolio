@@ -5,11 +5,10 @@ import { getClientIp, checkRateLimit } from "@/lib/agent/rate-limit";
 
 export const runtime = "nodejs";
 
-interface ChatRequestBody {
+interface AgentRequestBody {
   messages?: unknown[];
 }
 
-/** @deprecated Use POST /api/agent */
 export async function POST(request: Request): Promise<Response> {
   try {
     const ip = getClientIp(request);
@@ -21,11 +20,16 @@ export async function POST(request: Request): Promise<Response> {
           success: false,
           error: "Too many requests. Please try again later.",
         },
-        { status: 429 },
+        {
+          status: 429,
+          headers: rateLimit.retryAfterSeconds
+            ? { "Retry-After": String(rateLimit.retryAfterSeconds) }
+            : undefined,
+        },
       );
     }
 
-    const body = (await request.json()) as ChatRequestBody;
+    const body = (await request.json()) as AgentRequestBody;
 
     if (!body.messages?.length) {
       return NextResponse.json(
@@ -36,8 +40,8 @@ export async function POST(request: Request): Promise<Response> {
 
     return await handleAgentChat(body.messages);
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Chat failed";
-    console.error("POST /api/chat:", message);
+    const message = error instanceof Error ? error.message : "Agent failed";
+    console.error("POST /api/agent:", message);
     return NextResponse.json(
       { success: false, error: "Agent temporarily unavailable" },
       { status: 500 },
