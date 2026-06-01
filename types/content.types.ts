@@ -5,6 +5,11 @@ export interface ProjectLink {
 
 export type ProjectContentVariant = "case-study" | "curiosity";
 
+export interface ProductThinkingSection {
+  title: string;
+  body: string;
+}
+
 export interface Project {
   slug: string;
   name: string;
@@ -22,6 +27,9 @@ export interface Project {
   hasArchitectureDiagram: boolean;
   expandInWork: boolean;
   showResult: boolean;
+  showProductThinking: boolean;
+  productThinkingIntro: string;
+  productThinkingSections: ProductThinkingSection[];
   order: number;
 }
 

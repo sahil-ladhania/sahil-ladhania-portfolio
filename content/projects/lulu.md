@@ -22,3 +22,16 @@ Dating apps in India are photo-first: you match on a jawline, open chat, and hit
 ## Solution
 
 Building a matchmaking experience where real connection comes before photos and performance.
+
+## Product Thinking
+
+Lulu starts from a Gen Z social reality: photo-first apps create performance pressure and dead-end conversations.
+
+### User insight
+The "hey black hole" — match, say hi, silence, unmatch, repeat — is exhausting when you're building a social graph from scratch, not optimizing an existing one.
+
+### Key decisions
+Connection before photos: prioritize how people actually talk before how they look. Voice as a lower-friction entry point for users who won't perform on camera for strangers.
+
+### UX choices
+Placeholder — specific UI flows and interaction patterns to be documented as the product ships.

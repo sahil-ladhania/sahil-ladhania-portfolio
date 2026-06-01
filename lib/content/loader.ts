@@ -8,6 +8,7 @@ import type {
   CurrentlyBuilding,
   HeroTerminalContent,
   Post,
+  ProductThinkingSection,
   Project,
   SiteMeta,
   TooltipRegistry,
@@ -52,7 +53,40 @@ function extractSection(body: string, heading: string): string {
   return match?.[1]?.trim() ?? "";
 }
 
+function parseProductThinking(body: string): {
+  intro: string;
+  sections: ProductThinkingSection[];
+} {
+  const raw = extractSection(body, "Product Thinking");
+
+  if (!raw) {
+    return { intro: "", sections: [] };
+  }
+
+  const headingPattern = /^### (.+)$/gm;
+  const matches = [...raw.matchAll(headingPattern)];
+
+  if (matches.length === 0) {
+    return { intro: raw.trim(), sections: [] };
+  }
+
+  const intro = raw.slice(0, matches[0].index).trim();
+  const sections = matches.map((match, index) => {
+    const start = (match.index ?? 0) + match[0].length;
+    const end = matches[index + 1]?.index ?? raw.length;
+
+    return {
+      title: match[1].trim(),
+      body: raw.slice(start, end).trim(),
+    };
+  });
+
+  return { intro, sections };
+}
+
 function parseProject(data: Record<string, unknown>, body: string): Project {
+  const productThinking = parseProductThinking(body);
+
   return {
     slug: String(data.slug),
     name: String(data.name),
@@ -71,6 +105,9 @@ function parseProject(data: Record<string, unknown>, body: string): Project {
     hasArchitectureDiagram: Boolean(data.hasArchitectureDiagram),
     expandInWork: data.expandInWork !== false,
     showResult: data.showResult !== false,
+    showProductThinking: data.showProductThinking !== false,
+    productThinkingIntro: productThinking.intro,
+    productThinkingSections: productThinking.sections,
     order: Number(data.order),
   };
 }

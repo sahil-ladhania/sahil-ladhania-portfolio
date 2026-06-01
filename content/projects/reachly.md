@@ -27,3 +27,16 @@ Reachly is an AI outbound copilot. Set up your profile once; your resume is pars
 ## Result
 
 Roughly 5 emails/week → 75/week at the same quality, and 15 minutes per email → ~30 seconds. Follow-ups run on a schedule instead of being forgotten. ~$20–50/month on self-hosted APIs vs Instantly's $97/month. Production system with RAG, LangGraph agents, Gmail integration, eval harnesses, and LangSmith tracing. A real product to demo, not a mockup.
+
+## Product Thinking
+
+Reachly is built for job seekers who care about reply quality, not blast volume. Every product decision reinforces trust and control.
+
+### User insight
+Cold outreach for jobs feels spammy when tools optimize for volume. Job seekers need thoughtful personalization but can't spend 15 minutes per email at scale.
+
+### Key decisions
+Human-in-the-loop at every stage — nothing sends without explicit approval. 15/day Gmail cap treated as a feature (deliverability + quality), not a limitation to hack around.
+
+### UX choices
+Resume parsed once into structured fields, reused across every draft. Stage-by-stage approval UI so users see what the AI found before committing to send.

@@ -3,7 +3,7 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Badge } from "@/components/ui/Badge";
 import { Link } from "@/components/ui/Link";
-import { ArchitectureDiagram } from "@/components/features/architecture-diagram/ArchitectureDiagram";
+import { ProjectExpandedContent } from "@/components/sections/ProjectExpandedContent";
 import { ProductLogo } from "@/components/shared/ProductLogo";
 import type { Project } from "@/types/content.types";
 
@@ -86,61 +86,11 @@ export function ProjectCard({
         </div>
       </button>
 
-      {isExpanded && (
-        <div className="mt-6 space-y-6 border-t border-border pt-6">
-          {project.contentVariant === "curiosity" ? (
-            <>
-              <p className="text-foreground-muted">{project.about}</p>
-              {project.highlights.length > 0 ? (
-                <div>
-                  <h4 className="mb-2 font-mono text-xs uppercase text-accent">
-                    What&apos;s inside
-                  </h4>
-                  <ul className="list-inside list-disc space-y-1 text-foreground-muted">
-                    {project.highlights.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-            </>
-          ) : (
-            <>
-              <div>
-                <h4 className="mb-2 font-mono text-xs uppercase text-accent">Problem</h4>
-                <p className="text-foreground-muted">{project.problem}</p>
-              </div>
-              <div>
-                <h4 className="mb-2 font-mono text-xs uppercase text-accent">Solution</h4>
-                <p className="text-foreground-muted">{project.solution}</p>
-              </div>
-              {project.showResult ? (
-                <div>
-                  <h4 className="mb-2 font-mono text-xs uppercase text-accent">Result</h4>
-                  <p className="text-foreground-muted">{project.result}</p>
-                </div>
-              ) : null}
-            </>
-          )}
-          {project.hasArchitectureDiagram && (
-            <ArchitectureDiagram slug={project.slug} name={project.name} />
-          )}
-          <div className="flex flex-wrap gap-2">
-            {project.techStack.map((tech) => (
-              <Badge key={tech}>{tech}</Badge>
-            ))}
-          </div>
-          {project.links && project.links.length > 0 && (
-            <div className="flex flex-wrap gap-4">
-              {project.links.map((link) => (
-                <Link key={link.href} href={link.href} variant="external">
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          )}
+      {isExpanded ? (
+        <div className="mt-6 border-t border-border pt-6">
+          <ProjectExpandedContent project={project} />
         </div>
-      )}
+      ) : null}
     </GlassCard>
   );
 }

@@ -7,6 +7,7 @@ outcomeLine: AI creative intelligence from raw customer language
 order: 5
 hasArchitectureDiagram: false
 expandInWork: true
+showProductThinking: false
 showResult: false
 techStack:
   - Next.js

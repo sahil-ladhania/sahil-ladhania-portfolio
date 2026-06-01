@@ -25,3 +25,16 @@ Built a villa platform with three apps on one backend: admin dashboard for booki
 ## Result
 
 Live for one business with two active admins. Booking → voucher → WhatsApp runs end to end with no manual steps. Backend handles 620 RPS at 26ms p95 with zero errors at 1,000 concurrent users. Single source of truth for bookings, revenue, and guest comms.
+
+## Product Thinking
+
+TBK wasn't a greenfield SaaS play — it had to fit how villa owners and staff already worked, not force a new habit.
+
+### User insight
+Owners and ops staff lived in WhatsApp and spreadsheets. Asking them to abandon those tools for a standalone app would have killed adoption on day one.
+
+### Key decisions
+One backend with three surfaces (admin, owner portal, public booking) instead of three separate products. Automated PDF voucher + WhatsApp send as the "booking is done" moment — no manual follow-up.
+
+### UX choices
+Split admin vs owner views so non-technical owners see performance, not operational complexity. Public booking page stays simple; heavy lifting stays behind the dashboard.
