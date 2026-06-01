@@ -14,8 +14,8 @@ export function GlassCard({
   return (
     <div
       className={cn(
-        "rounded-lg border border-glass-border bg-glass-bg p-6 shadow-sm dark:shadow-none",
-        !flat && "backdrop-blur-xl",
+        "rounded-lg border border-glass-border bg-glass-bg p-6 shadow-[var(--glass-shadow)] ring-1 ring-white/5",
+        !flat && "backdrop-blur-2xl backdrop-saturate-150",
         className,
       )}
     >

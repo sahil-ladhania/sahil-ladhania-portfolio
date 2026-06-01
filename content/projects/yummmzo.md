@@ -2,7 +2,7 @@
 slug: yummmzo
 name: YUMMMZO
 logo: /logos/yummmzo.png
-role: Founder & Lead Engineer
+role: Pet project · Learning build
 outcomeLine: My first full-stack build. Curiosity project, deployed like it's real
 order: 3
 contentVariant: curiosity
@@ -37,13 +37,14 @@ Full-stack food delivery platform built from scratch to learn end-to-end product
 
 ## Product Thinking
 
-YUMMMZO was a learning project deployed like production — product decisions mirrored real marketplace friction, not tutorial simplicity.
-
 ### User insight
-A food delivery app isn't one user type — customers, restaurant owners, and delivery partners each have different mental models and failure modes.
+People often know their craving, budget, or food mood before they know dish names, so discovery should translate intent into items from a specific menu.
 
 ### Key decisions
-Three separate dashboards on one backend instead of a single generic admin. Seeded 15,000+ menu items so discovery and cart logic could be tested at realistic scale.
+On the engineering side, this was built like a real product, with an Express.js and Prisma backend for the full order lifecycle, BullMQ for async notifications, Stripe integration, JWT auth with httpOnly cookies, Redis token blacklisting, and Zod validation.
 
 ### UX choices
-Haversine-based restaurant discovery, Redis cart with multi-restaurant conflict handling, and a full order lifecycle (not just "place order" happy path). Razorpay integration with real payment states, not mocked success screens.
+Smart Cart should be framed as an intent-translation layer inside the restaurant menu, not as generic recommendations.
+
+### Impact
+No usage or retention metrics. This was a pet project. The payoff was the learning: Haversine for location-based restaurant discovery, Redis for cart caching, BullMQ for async order notifications, and wiring a full multi-role order lifecycle end to end.

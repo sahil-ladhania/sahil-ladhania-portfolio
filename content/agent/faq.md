@@ -14,7 +14,7 @@ Yes. LangChain.js and LangGraph are in his production stack (e.g. Reachly, agent
 
 ## What projects should I ask about?
 
-TBK Villas (hospitality CRM), Reachly (AI outbound), YUMMMZO (food delivery), Lulu (matchmaking, in progress), Castra (creative intelligence, in progress).
+TBK Villas (hospitality CRM), Reachly (AI outbound), YUMMMZO (food delivery), Lulu (matchmaking, in progress), Custra (creative intelligence, in progress).
 
 ## Can he build a CRM for my business?
 

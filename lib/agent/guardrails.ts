@@ -8,7 +8,7 @@ const ON_TOPIC_KEYWORDS = [
   "reachly",
   "yummmzo",
   "lulu",
-  "castra",
+  "custra",
   "project",
   "portfolio",
   "hire",

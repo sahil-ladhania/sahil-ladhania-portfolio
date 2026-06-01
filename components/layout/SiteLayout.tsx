@@ -1,5 +1,6 @@
 "use client";
 
+import { PageBackground } from "@/components/layout/PageBackground";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { AgentChatProvider } from "@/components/features/agent-chat/AgentChatProvider";
@@ -18,8 +19,9 @@ export function SiteLayout({
 }: SiteLayoutProps): React.ReactElement {
   return (
     <AgentChatProvider>
+      <PageBackground />
       <SiteHeader />
-      <main className="pb-32">{children}</main>
+      <main className="relative z-10 pb-32">{children}</main>
       <SiteFooter />
       <AgentChat />
       <CommandPalette contact={contact} />

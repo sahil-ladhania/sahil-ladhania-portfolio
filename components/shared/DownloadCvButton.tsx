@@ -1,4 +1,8 @@
 import { cn } from "@/lib/cn";
+import {
+  glassPrimaryButton,
+  glassSecondaryButton,
+} from "@/lib/glass-styles";
 
 interface DownloadCvButtonProps {
   variant?: "primary" | "secondary" | "ghost";
@@ -8,11 +12,9 @@ interface DownloadCvButtonProps {
 const CV_PATH = "/cv/sahil-ladhania-cv.pdf";
 
 const variantClasses = {
-  primary:
-    "bg-accent text-white hover:bg-accent-hover dark:text-accent-950",
-  secondary:
-    "border border-border bg-glass-bg text-foreground hover:border-border-strong",
-  ghost: "text-foreground-muted hover:text-accent",
+  primary: glassPrimaryButton,
+  secondary: glassSecondaryButton,
+  ghost: "text-white/70 hover:text-white",
 };
 
 export function DownloadCvButton({
@@ -24,7 +26,9 @@ export function DownloadCvButton({
       href={CV_PATH}
       download="sahil-ladhania-cv.pdf"
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors",
+        variant === "ghost"
+          ? "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors"
+          : undefined,
         variantClasses[variant],
         className,
       )}

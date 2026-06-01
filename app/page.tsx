@@ -31,6 +31,7 @@ export default function Home(): React.ReactElement {
         contact={siteMeta.contact}
         terminal={heroTerminal}
         tooltips={tooltips}
+        projects={projects}
       />
       <ZyntohouseSection content={zyntohouse.content} body={zyntohouse.body} />
       <WorkSection projects={projects} />

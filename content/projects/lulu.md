@@ -2,12 +2,14 @@
 slug: lulu
 name: Lulu
 logo: /logos/lulu.png
-role: Founder & Lead Engineer
+role: Founder · Lead Engineer
 outcomeLine: Matchmaking reimagined for Indian Gen Z, in progress
 order: 4
-hasArchitectureDiagram: false
 expandInWork: true
 showResult: false
+links:
+  - label: Live app
+    href: https://getluluapp.in
 techStack:
   - LangGraph
   - Voice AI
@@ -25,13 +27,15 @@ Building a matchmaking experience where real connection comes before photos and 
 
 ## Product Thinking
 
-Lulu starts from a Gen Z social reality: photo-first apps create performance pressure and dead-end conversations.
-
 ### User insight
-The "hey black hole" — match, say hi, silence, unmatch, repeat — is exhausting when you're building a social graph from scratch, not optimizing an existing one.
+Text lets people edit themselves too much, while voice exposes tone, confidence, hesitation, and warmth much faster.
 
 ### Key decisions
-Connection before photos: prioritize how people actually talk before how they look. Voice as a lower-friction entry point for users who won't perform on camera for strangers.
+Voice is not just the input mode; it is the core filtering mechanism, because the product belief is that early matching quality depends more on how someone sounds than on a polished written profile.
 
 ### UX choices
-Placeholder — specific UI flows and interaction patterns to be documented as the product ships.
+The landing page and waitlist should filter for users who care about intent and emotional signal, not swipe volume or casual browsing.
+
+### Impact
+
+401 users on the waitlist.

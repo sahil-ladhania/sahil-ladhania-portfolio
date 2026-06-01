@@ -2,7 +2,7 @@
 hero:
   greeting: "Hi, I'm Sahil."
   oneLiner: "I build production AI systems and full-stack products, from zero to paying users."
-  subtext: "I split my time between {{zyntohouse}} and products of my own — mostly {{multi-tenant-saas}} and {{agentic-pipelines}} for teams who need software that holds up after launch, not just in a demo."
+  subtext: "I work across {{zyntohouse}} and my own products, building {{multi-tenant-saas}}, internal tools, and agentic workflows that are designed to survive real usage, not just a demo."
 contact:
   email: sahilladhania5@gmail.com
   calUrl: https://cal.com/sahil-ladhania/lets-build-something
@@ -29,9 +29,9 @@ currentlyBuilding:
       - Voice AI
       - Next.js
       - PostgreSQL
-  - name: Castra
+  - name: Custra
     status: building-now
-    logo: /logos/castra.svg
+    logo: /logos/custra.svg
     description: "AI creative intelligence that ingests reviews, Reddit, ad comments, and support tickets, then outputs ranked ad angles, hooks, and UGC briefs grounded in real customer language."
     techStack:
       - Next.js

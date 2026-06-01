@@ -2,7 +2,7 @@
 
 ## TBK Villas (TBK CRM)
 
-**Role:** Founder & Lead Engineer  
+**Role:** Zyntohouse · Built end to end  
 **Outcome:** Villa management platform powering a live Goa rental business.
 
 **Problem:** A Goa villa rental business ran on WhatsApp and Excel—no central system, slow manual booking confirmations.
@@ -11,13 +11,14 @@
 
 **Result:** Live for one business. Booking → voucher → WhatsApp is end-to-end automated. Backend handles 620 RPS at 26ms p95 with zero errors at 1,000 concurrent users.
 
-**Stack:** Node.js, PostgreSQL, WhatsApp API, Puppeteer
+**Stack:** Node.js, PostgreSQL, WhatsApp API, Puppeteer  
+**Live:** https://tbkvillasapp.online
 
 ---
 
 ## Reachly
 
-**Role:** Founder & Lead Engineer  
+**Role:** Solo build · Personal tool  
 **Outcome:** AI outbound copilot for job hunting with human approval at every step.
 
 **Problem:** Cold outreach was manual—15–20 minutes per personalized email, ~3–4% reply rates, poor follow-up tracking.
@@ -26,13 +27,14 @@
 
 **Result:** ~5 emails/week → 75/week at similar quality; ~15 min/email → ~30 seconds. Production RAG, LangSmith tracing, eval harnesses.
 
-**Stack:** LangGraph, GPT-4o, pgVector, Gmail API, Apollo, LangSmith
+**Stack:** LangGraph, GPT-4o, pgVector, Gmail API, Apollo, LangSmith  
+**Live:** https://reachly.fun
 
 ---
 
 ## YUMMMZO
 
-**Role:** Founder & Lead Engineer  
+**Role:** Pet project · Learning build  
 **Outcome:** Full-stack food delivery platform—first major build, deployed like production.
 
 **Highlights:** Multi-dashboard (user, restaurant, delivery), Haversine discovery, Redis cart, Razorpay, JWT + RBAC, 15,000+ seeded menu items, Hostinger VPS + Vercel.
@@ -44,16 +46,19 @@
 
 ## Lulu (in progress)
 
-**Role:** Founder & Lead Engineer  
+**Role:** Founder · Lead Engineer  
 Voice-first, personality-based matchmaking for Indian Gen Z—connection before photo-first swiping.
 
-**Stack:** LangGraph, Voice AI, Next.js, PostgreSQL
+**Stack:** LangGraph, Voice AI, Next.js, PostgreSQL  
+**Live:** https://getluluapp.in
 
 ---
 
-## Castra (in progress)
+## Custra (in progress)
 
-**Role:** Founder & Lead Engineer  
+**Role:** Zyntohouse · Built end to end  
+**Context:** Built with Zyntohouse for a non-technical founder—not Sahil's own startup.
 AI creative intelligence: ingests reviews, Reddit, ad comments, support tickets; outputs ranked ad angles, hooks, and UGC briefs from real customer language.
 
-**Stack:** Next.js, PostgreSQL, GPT-4o, pgVector
+**Stack:** Next.js, PostgreSQL, GPT-4o, pgVector  
+**Live:** https://getcustra.com

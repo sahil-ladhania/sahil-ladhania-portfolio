@@ -2,11 +2,13 @@
 slug: tbk-crm
 name: TBK Villas
 logo: /logos/tbk-crm.svg
-role: Founder & Lead Engineer
+role: Zyntohouse · Built end to end
 outcomeLine: Villa management platform powering a live Goa rental business
 order: 1
-hasArchitectureDiagram: true
 expandInWork: true
+links:
+  - label: Live app
+    href: https://tbkvillasapp.online
 techStack:
   - Node.js
   - PostgreSQL
@@ -28,13 +30,14 @@ Live for one business with two active admins. Booking → voucher → WhatsApp r
 
 ## Product Thinking
 
-TBK wasn't a greenfield SaaS play — it had to fit how villa owners and staff already worked, not force a new habit.
-
 ### User insight
-Owners and ops staff lived in WhatsApp and spreadsheets. Asking them to abandon those tools for a standalone app would have killed adoption on day one.
+Villa owners and ops staff already worked in WhatsApp and spreadsheets, so adoption depended on fitting those habits instead of forcing a dashboard-first workflow. Your shipped system already supports that story through WhatsApp Cloud API automation and bi-directional Google Sheets sync.
 
 ### Key decisions
-One backend with three surfaces (admin, owner portal, public booking) instead of three separate products. Automated PDF voucher + WhatsApp send as the "booking is done" moment — no manual follow-up.
+One property-management backend handled guest confirmations, booking vouchers, financial analytics, and multi-owner access control, which made the product feel like one operating system instead of scattered tools.
 
 ### UX choices
-Split admin vs owner views so non-technical owners see performance, not operational complexity. Public booking page stays simple; heavy lifting stays behind the dashboard.
+Staff needed execution speed, while owners needed visibility, so the interface logic should separate operational complexity from owner reporting instead of showing both users the same surface.
+
+### Impact
+Automated guest confirmations reduced manual administrative work by 80%.

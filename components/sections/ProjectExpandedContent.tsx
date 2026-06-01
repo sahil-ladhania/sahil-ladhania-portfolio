@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { ArchitectureDiagram } from "@/components/features/architecture-diagram/ArchitectureDiagram";
 import { Badge } from "@/components/ui/Badge";
-import { Link } from "@/components/ui/Link";
+import { ProjectLiveLink } from "@/components/sections/ProjectLiveLink";
 import { SegmentedTabs } from "@/components/ui/SegmentedTabs";
 import type { Project } from "@/types/content.types";
 
@@ -109,12 +108,7 @@ export function ProjectExpandedContent({
         {showTabs && activeTab === "thinking" ? (
           <ProductThinkingContent project={project} />
         ) : (
-          <>
-            <BuildStoryContent project={project} />
-            {project.hasArchitectureDiagram ? (
-              <ArchitectureDiagram slug={project.slug} name={project.name} />
-            ) : null}
-          </>
+          <BuildStoryContent project={project} />
         )}
       </div>
 
@@ -123,15 +117,7 @@ export function ProjectExpandedContent({
           <Badge key={tech}>{tech}</Badge>
         ))}
       </div>
-      {project.links && project.links.length > 0 ? (
-        <div className="flex flex-wrap gap-4">
-          {project.links.map((link) => (
-            <Link key={link.href} href={link.href} variant="external">
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      ) : null}
+      <ProjectLiveLink project={project} />
     </div>
   );
 }

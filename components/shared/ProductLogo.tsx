@@ -15,7 +15,7 @@ const SIZE_CLASSES = {
 /** Monochrome logos — use foreground color so they track light/dark theme. */
 const THEME_AWARE_LOGOS = new Set([
   "/logos/tbk-crm.svg",
-  "/logos/castra.svg",
+  "/logos/custra.svg",
   "/logos/reachly.png",
   "/logos/ritli.png",
 ]);

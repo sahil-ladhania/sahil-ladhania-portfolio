@@ -22,15 +22,15 @@ Node.js · TypeScript · React · Next.js · PostgreSQL · Redis · BullMQ · La
 
 Tech studio building and shipping products for clients who need a technical partner. 10+ months operating with real clients, real revenue, and real deadlines. Full-stack builds, AI integrations, and product architecture.
 
-### Founder & Lead Engineer, TBK CRM
+### Zyntohouse · TBK Villas *(built end to end)*
 
 Multi-tenant hospitality SaaS powering 50+ clients and 50+ properties. Property management, automated guest messaging via WhatsApp Cloud API, PDF generation, Gmail SMTP, Google Sheets/Drive sync, and role-based access.
 
-### Founder & Lead Engineer, Reachly
+### Solo build, Reachly *(personal tool)*
 
 Agentic outbound SaaS with RAG-grounded personalization and human approval gates. Lead scraping and enrichment, pgVector RAG, GPT-4o draft sequences, Gmail API integration, streaming UI.
 
-### Lead Engineer, YUMMMZO
+### Pet project, YUMMMZO *(learning build)*
 
 Food delivery app with Haversine-based restaurant discovery, Redis caching, BullMQ async order processing, Stripe checkout, and JWT auth with Redis token blacklisting.
 

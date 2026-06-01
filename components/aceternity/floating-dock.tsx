@@ -9,6 +9,12 @@
  **/
 
 import { cn } from "@/lib/cn";
+import {
+  glassDockIconHit,
+  glassDockMobileShell,
+  glassDockShell,
+  glassDockTooltip,
+} from "@/lib/glass-styles";
 import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import {
   AnimatePresence,
@@ -23,9 +29,6 @@ import { useRef, useState } from "react";
 import type { FloatingDockItem } from "@/components/aceternity/floating-dock.types";
 
 export type { FloatingDockItem };
-
-const DOCK_SHELL_CLASS =
-  "mx-auto flex min-h-[3.25rem] max-w-[calc(100vw-2rem)] items-end gap-1.5 overflow-visible rounded-2xl border border-border-strong bg-glass-bg/75 px-3 py-2 shadow-[0_8px_32px_rgba(8,74,58,0.14)] backdrop-blur-2xl backdrop-saturate-150 ring-1 ring-white/50 dark:bg-glass-bg/80 dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)] dark:ring-white/10 sm:gap-2 sm:px-4";
 
 /** Subtle magnify — base 40px, peak 50px (was 80px). */
 const ICON_SIZE_RANGE: number[] = [40, 50, 40];
@@ -83,7 +86,7 @@ const FloatingDockMobile = ({
               >
                 <DockItemTrigger
                   item={item}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-glass-border bg-glass-bg backdrop-blur-xl"
+                  className={cn(glassDockMobileShell, "h-10 w-10")}
                   iconClassName="h-4 w-4"
                 />
               </motion.div>
@@ -94,11 +97,11 @@ const FloatingDockMobile = ({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-glass-border bg-glass-bg backdrop-blur-xl"
+        className={cn(glassDockMobileShell, "h-10 w-10")}
         aria-label="Toggle navigation menu"
         aria-expanded={open}
       >
-        <IconLayoutNavbarCollapse className="h-5 w-5 text-foreground-muted" />
+        <IconLayoutNavbarCollapse className="h-5 w-5 text-white/80" />
       </button>
     </div>
   );
@@ -116,9 +119,9 @@ const FloatingDockDesktop = ({
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      className={cn(DOCK_SHELL_CLASS, className)}
+      className={cn(glassDockShell, className)}
     >
-      <div className="flex items-end gap-1.5 overflow-visible sm:gap-2">
+      <div className="flex items-end gap-2 overflow-visible sm:gap-2.5">
         {items.map((item) => (
           <IconContainer mouseX={mouseX} key={item.title} {...item} />
         ))}
@@ -236,7 +239,7 @@ function IconContainer({
           style={{ width, height }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
-          className="relative z-10 flex aspect-square items-center justify-center overflow-visible rounded-full border border-border/60 bg-background/80 shadow-sm backdrop-blur-sm transition-colors hover:border-accent/40 hover:bg-accent-muted dark:bg-background-subtle/90"
+          className={glassDockIconHit}
         >
           <AnimatePresence>
             {hovered && (
@@ -245,7 +248,7 @@ function IconContainer({
                 animate={{ opacity: 1, y: 0, x: "-50%" }}
                 exit={{ opacity: 0, y: 4, x: "-50%" }}
                 transition={{ duration: 0.15 }}
-                className="pointer-events-none absolute bottom-[calc(100%+0.5rem)] left-1/2 z-50 w-max max-w-[10rem] rounded-md border border-border-strong bg-glass-bg px-2.5 py-1 text-center text-xs font-medium text-foreground shadow-md backdrop-blur-xl"
+                className={glassDockTooltip}
               >
                 {title}
               </motion.div>
@@ -253,7 +256,7 @@ function IconContainer({
           </AnimatePresence>
           <motion.div
             style={{ width: widthIcon, height: heightIcon }}
-            className="flex items-center justify-center text-accent"
+            className="flex items-center justify-center"
           >
             {icon}
           </motion.div>

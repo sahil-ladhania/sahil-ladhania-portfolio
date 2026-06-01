@@ -1,6 +1,6 @@
 # Availability
 
-Sahil splits time between Zyntohouse client work and his own products (Lulu, Castra, and maintaining shipped systems like TBK and Reachly).
+Sahil splits time between Zyntohouse client work and his own products (Lulu, Custra, and maintaining shipped systems like TBK and Reachly).
 
 ## Client work (Zyntohouse)
 

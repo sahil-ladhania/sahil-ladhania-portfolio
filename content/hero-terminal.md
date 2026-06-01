@@ -20,7 +20,7 @@ sequences:
       - reachly/
       - yummmzo/
       - lulu/  (in progress)
-      - castra/  (in progress)
+      - custra/  (in progress)
   - command: npm run stack --production
     output:
       - "✓ Next.js · TypeScript · PostgreSQL · Redis"

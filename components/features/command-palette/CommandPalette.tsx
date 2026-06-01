@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { Command } from "cmdk";
-import { useTheme } from "@/components/theme/ThemeProvider";
 import { useAgentChat } from "@/components/features/agent-chat/AgentChatProvider";
 import { getCvDownloadUrl } from "@/components/shared/DownloadCvButton";
 import { cn } from "@/lib/cn";
@@ -22,7 +21,6 @@ const NAV_ITEMS = [
 
 export function CommandPalette({ contact }: CommandPaletteProps): React.ReactElement | null {
   const [open, setOpen] = useState<boolean>(false);
-  const { toggleTheme } = useTheme();
   const { openChat } = useAgentChat();
 
   const scrollTo = useCallback((href: string): void => {
@@ -57,9 +55,9 @@ export function CommandPalette({ contact }: CommandPaletteProps): React.ReactEle
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-background/80 pt-[20vh] backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 pt-[20vh] backdrop-blur-md">
       <Command
-        className="w-full max-w-lg overflow-hidden rounded-lg border border-border bg-background shadow-lg"
+        className="w-full max-w-lg overflow-hidden rounded-lg border border-glass-border bg-glass-bg shadow-[var(--glass-shadow)] backdrop-blur-2xl"
         label="Command palette"
       >
         <Command.Input
@@ -141,16 +139,6 @@ export function CommandPalette({ contact }: CommandPaletteProps): React.ReactEle
               className="cursor-pointer rounded-md px-3 py-2 text-sm aria-selected:bg-accent-muted"
             >
               Download CV
-            </Command.Item>
-            <Command.Item
-              value="Toggle theme"
-              onSelect={() => {
-                toggleTheme();
-                setOpen(false);
-              }}
-              className="cursor-pointer rounded-md px-3 py-2 text-sm aria-selected:bg-accent-muted"
-            >
-              Toggle light/dark
             </Command.Item>
           </Command.Group>
         </Command.List>

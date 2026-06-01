@@ -4,6 +4,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { Badge } from "@/components/ui/Badge";
 import { Link } from "@/components/ui/Link";
 import { ProjectExpandedContent } from "@/components/sections/ProjectExpandedContent";
+import { ProjectLiveLink } from "@/components/sections/ProjectLiveLink";
 import { ProductLogo } from "@/components/shared/ProductLogo";
 import type { Project } from "@/types/content.types";
 
@@ -67,7 +68,11 @@ export function ProjectCard({
               <ProjectCardHeader project={project} />
             </div>
             {!isExpanded && (
-              <div className="mt-2 flex flex-wrap items-center gap-2">
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <ProjectLiveLink
+                  project={project}
+                  onClick={(event) => event.stopPropagation()}
+                />
                 {project.contentVariant === "curiosity" ? (
                   <Badge variant="accent">Curiosity project</Badge>
                 ) : null}

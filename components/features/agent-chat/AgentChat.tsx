@@ -72,7 +72,7 @@ export function AgentChat(): React.ReactElement {
           onClick={openChat}
           onMouseEnter={() => setTriggerHovered(true)}
           onMouseLeave={() => setTriggerHovered(false)}
-          className="fixed top-5 right-6 z-40 flex h-11 w-11 items-center justify-center overflow-visible rounded-full border border-border-strong bg-glass-bg/75 shadow-[0_8px_32px_rgba(8,74,58,0.12)] backdrop-blur-2xl backdrop-saturate-150 ring-1 ring-white/50 transition-colors hover:border-accent/40 hover:bg-accent-muted/30 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] dark:ring-white/10"
+          className="fixed top-5 right-6 z-40 flex h-11 w-11 items-center justify-center overflow-visible rounded-full border border-glass-border bg-glass-bg/55 shadow-[var(--glass-dock-shadow)] backdrop-blur-3xl backdrop-saturate-150 ring-1 ring-white/10 transition-colors hover:border-accent/40 hover:bg-accent-muted/30"
           aria-label="Ask my agent anything"
         >
           <AnimatePresence>
@@ -111,7 +111,7 @@ export function AgentChat(): React.ReactElement {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="fixed top-0 right-0 z-50 flex h-full w-full max-w-md flex-col border-l border-border bg-background shadow-lg"
+              className="fixed top-0 right-0 z-50 flex h-full w-full max-w-md flex-col border-l border-glass-border bg-glass-bg/90 shadow-[var(--glass-shadow)] backdrop-blur-2xl"
               aria-label="Agent chat"
             >
               <div className="flex items-center justify-between border-b border-border px-5 py-4">

@@ -56,10 +56,14 @@ export interface ZyntohouseContent {
   logo: string;
   websiteUrl: string;
   calUrl: string;
+  role: string;
+  startDate: string;
+  endDate: string;
   tagline: string;
   proofPoints: string[];
   services: string[];
   clientTypes: string[];
+  techStack: string[];
 }
 
 export interface SiteHero {

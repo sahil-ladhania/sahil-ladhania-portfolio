@@ -3,6 +3,12 @@
 import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 
 import { cn } from "@/lib/cn";
+import {
+  glassTabActivePill,
+  glassTabButtonActive,
+  glassTabButtonInactive,
+  glassTabList,
+} from "@/lib/glass-styles";
 
 export interface SegmentedTabOption<T extends string> {
   id: T;
@@ -35,11 +41,7 @@ export function SegmentedTabs<T extends string>({
 
   return (
     <LayoutGroup id={layoutGroupId}>
-      <div
-        role="tablist"
-        aria-label={ariaLabel}
-        className="inline-flex rounded-lg border border-border bg-glass-bg p-1"
-      >
+      <div role="tablist" aria-label={ariaLabel} className={glassTabList}>
         {options.map((option) => {
           const isActive = value === option.id;
 
@@ -52,15 +54,13 @@ export function SegmentedTabs<T extends string>({
               onClick={() => onChange(option.id)}
               className={cn(
                 "relative rounded-md px-3 py-1.5 text-sm font-medium",
-                isActive
-                  ? "text-white dark:text-accent-950"
-                  : "text-foreground-muted hover:text-foreground",
+                isActive ? glassTabButtonActive : glassTabButtonInactive,
               )}
             >
               {isActive ? (
                 <motion.span
                   layoutId={`${layoutGroupId}-pill`}
-                  className="absolute inset-0 rounded-md bg-accent"
+                  className={glassTabActivePill}
                   transition={pillTransition}
                 />
               ) : null}

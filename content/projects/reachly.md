@@ -2,11 +2,13 @@
 slug: reachly
 name: Reachly
 logo: /logos/reachly.png
-role: Founder & Lead Engineer
+role: Solo build · Personal tool
 outcomeLine: AI outbound copilot for job hunting, human approval at every step
 order: 2
-hasArchitectureDiagram: true
 expandInWork: true
+links:
+  - label: Live app
+    href: https://reachly.fun
 techStack:
   - LangGraph
   - GPT-4o
@@ -30,13 +32,14 @@ Roughly 5 emails/week → 75/week at the same quality, and 15 minutes per email 
 
 ## Product Thinking
 
-Reachly is built for job seekers who care about reply quality, not blast volume. Every product decision reinforces trust and control.
-
 ### User insight
-Cold outreach for jobs feels spammy when tools optimize for volume. Job seekers need thoughtful personalization but can't spend 15 minutes per email at scale.
+The real user is not a sales team optimizing for volume, but a single operator who needs deeply researched and highly personalized outreach. That matches the product you built, which automates company research, contact enrichment, and hyper-personalized email generation.
 
 ### Key decisions
-Human-in-the-loop at every stage — nothing sends without explicit approval. 15/day Gmail cap treated as a feature (deliverability + quality), not a limitation to hack around.
+The product should stay human-in-the-loop, because your system already uses approval gates and hard send caps to protect sender reputation instead of blindly automating sends.
 
 ### UX choices
-Resume parsed once into structured fields, reused across every draft. Stage-by-stage approval UI so users see what the AI found before committing to send.
+Follow-up scheduling, reply classification, and thread-level conversion tracking make the product feel like an outbound copilot, not just an email generator.
+
+### Impact
+Reachly reduced per-lead research time from about 20 minutes to under 30 seconds.

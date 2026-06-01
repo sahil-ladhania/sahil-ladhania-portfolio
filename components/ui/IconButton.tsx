@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn";
+import { glassSurfaceSoft, glassSurfaceSoftHover } from "@/lib/glass-styles";
 
 type IconButtonVariant = "ghost" | "solid";
 
@@ -9,8 +10,8 @@ interface IconButtonProps
 }
 
 const variants: Record<IconButtonVariant, string> = {
-  ghost: "text-foreground-muted hover:text-accent",
-  solid: "bg-accent text-white hover:bg-accent-hover dark:text-accent-950",
+  ghost: "text-white/70 hover:text-white",
+  solid: cn(glassSurfaceSoft, glassSurfaceSoftHover, "text-white"),
 };
 
 export function IconButton({

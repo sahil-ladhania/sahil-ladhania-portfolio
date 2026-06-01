@@ -5,7 +5,7 @@ Sahil is open to conversations about how he works with teams and clients. Specif
 ## What he does today
 
 - **Founder & lead engineer** at Zyntohouse (client work)
-- **Founder** on own products: TBK, Reachly, YUMMMZO, Lulu, Castra
+- **Founder** on own products: TBK, Reachly, YUMMMZO, Lulu, Custra
 
 ## Full-time roles
 
